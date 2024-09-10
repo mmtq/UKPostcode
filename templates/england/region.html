@@ -1,0 +1,72 @@
+{% extends 'england/core.html'%}
+{% block title %} State-wise Postcodes in England {% endblock %}
+{% block content %}
+<ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
+    <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
+        <a href="/">Home</a>
+    </li>
+    <li class="text-gray-500 text-lg">/</li>
+    <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">
+        England
+    </li>
+</ul>
+
+<div class="p-4">
+    <h1 class="text-black text-2xl font-bold mb-4">State-wise Postcodes in England</h1>
+    <p class="text-gray-800 leading-relaxed text-base">
+        Select a region below to find the associated county list and find your desired postcode.
+    </p>
+</div>
+<div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
+    {% for region in regions %}
+    <div class="p-2 sm:w-1/2 w-full">
+        <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+            <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                <path d="M22 4L12 14.01l-3-3"></path>
+            </svg> -->
+            <svg width="32px" class="mx-1" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2848 18.9935C12.1567 19.0875 12.0373 19.1728 11.9282 19.2493C11.8118 19.1721 11.6827 19.0833 11.5427 18.9832C10.8826 18.5109 10.0265 17.8176 9.18338 16.9529C7.45402 15.1792 6 12.9151 6 10.5C6 7.18629 8.68629 4.5 12 4.5C15.3137 4.5 18 7.18629 18 10.5C18 12.8892 16.4819 15.1468 14.6893 16.9393C13.8196 17.8091 12.9444 18.5099 12.2848 18.9935ZM19.5 10.5C19.5 16.5 12 21 12 21C11.625 21 4.5 16.5 4.5 10.5C4.5 6.35786 7.85786 3 12 3C16.1421 3 19.5 6.35786 19.5 10.5ZM13.5 10.5C13.5 11.3284 12.8284 12 12 12C11.1716 12 10.5 11.3284 10.5 10.5C10.5 9.67157 11.1716 9 12 9C12.8284 9 13.5 9.67157 13.5 10.5ZM15 10.5C15 12.1569 13.6569 13.5 12 13.5C10.3431 13.5 9 12.1569 9 10.5C9 8.84315 10.3431 7.5 12 7.5C13.6569 7.5 15 8.84315 15 10.5Z" fill="#012169"/> </g>
+                
+            </svg>
+            <span class="font-medium hover:text-[#007bff]"><a href="/england/{{region.slug}}">{{ region.name }}</a></span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- ------pagination------ -->
+
+<!-- <ul class="flex space-x-4 justify-center">
+    <li
+        class="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-500 w-10 h-10 rounded-lg">
+        Prev
+    </li>
+    <li
+        class="flex items-center justify-center shrink-0 hover:bg-gray-50  border-2 cursor-pointer text-base font-bold text-[#333] w-10 h-10 rounded-lg">
+        1
+    </li>
+    <li
+        class="flex items-center justify-center shrink-0 bg-blue-500  border-2 border-blue-500 cursor-pointer text-base font-bold text-white w-10 h-10 rounded-lg">
+        2
+    </li>
+    <li
+        class="flex items-center justify-center shrink-0 hover:bg-gray-50  border-2 cursor-pointer text-base font-bold text-[#333] w-10 h-10 rounded-lg">
+        3
+    </li>
+    <li
+        class="flex items-center justify-center shrink-0 hover:bg-gray-50  border-2 cursor-pointer text-base font-bold text-[#333] w-10 h-10 rounded-lg">
+        4
+    </li>
+    <li
+        class="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-500 w-10 h-10 rounded-lg">
+        Next
+    </li>
+</ul> -->
+{% endblock %}

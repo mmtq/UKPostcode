@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block body %}
+<div
+class="grid md:grid-cols-2 items-center md:gap-4 gap-8 font-[sans-serif] max-w-7xl max-md:max-w-md mx-auto p-[20px]">
+<div class="max-md:order-1 max-md:text-center">
+  <h3 class="text-gray-800 md:text-3xl text-2xl md:leading-10">Prompt Delivery and Enjoyable Dining Experience.</h3>
+  <p class="mt-4 text-sm text-gray-600">Laboris qui Lorem ad tempor ut reprehenderit. Nostrud anim nulla officia ea
+    sit deserunt. Eu eu quis anim aute Laboris qui Lorem ad tempor ut reprehenderit.</p>
+  <button type="button"
+    class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-blue-600 text-white hover:bg-blue-700">Explore</button>
+</div>
+<div class="lg:h-[400px] md:h-[400px] h-[250px]">
+  <img src="/static/images/uk-map-DFKdTB-h.svg" class="w-full h-full md:object-contain" />
+</div>
+</div>
+
+<!-- ----------countries---------- -->
+
+<section class="max-w-7xl max-md:max-w-md mx-auto p-[20px]">
+<div class="text-center">
+  <h2
+    class="text-3xl font-extrabold text-[#333] inline-block relative after:absolute after:w-4/6 after:h-1 after:left-0 after:right-0 after:-bottom-4 after:mx-auto after:bg-pink-400 after:rounded-full">
+    SELECT COUNTRY</h2>
+</div>
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-16">
+  <div>
+    <div class="bg-white border p-2 w-full max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+      <div class="mx-20 my-1">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/512px-Flag_of_England.svg.png"
+          class="w-full rounded-lg" />
+      </div>
+      <!-- component -->
+      <div class="max-w-screen-xl mx-auto px-5 bg-white min-h-sceen border rounded-lg">
+        <div class="grid divide-y divide-neutral-200 max-w-xl mx-auto">
+          <div class="py-5">
+            <details class="group">
+              <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                <span>
+                  <h2 class="font-bold">England</h2>
+                </span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                    width="24">
+                    <path d="M6 9l6 6 6-6"></path>
+                  </svg>
+                </span>
+              </summary>
+              <h2 class="m-5 font-semibold text-center">Select Region</h2>
+              <ul>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>North West</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Yorkshire and The Humber</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>East Midlands</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>West Midlands</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>East of England</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>London</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>South East</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>South West</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>North East</li>
+              </ul>
+              
+              <!-- <ul id="" class="p-5">
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Dropdown option</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Cloth set</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Sales details</li>
+                <li class='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Marketing</li>
+              </ul> -->
+        
+            </details>
+          </div>
+        </div>
+      </div>
+      <!-- <a href="base.html"><button type="button"
+        class="mt-1 px-5 py-2.5 w-full rounded-lg text-black text-sm tracking-wider font-semibold border-[1px] outline-none bg-white hover:bg-gray-100">England</button></a> -->
+    </div>
+  </div>
+  <div>
+    <div class="bg-white border p-2 w-full max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+      <div class="mx-20 my-1">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/512px-Flag_of_Scotland.svg.png"
+          class="w-full rounded-lg" />
+      </div>
+      <button type="button"
+        class="mt-1 px-5 py-2.5 w-full rounded-lg text-black text-sm tracking-wider font-semibold border-[1px] outline-none bg-white hover:bg-gray-100">Scotland</button>
+    </div>
+  </div>
+  <div>
+    <div class="bg-white border p-2 w-full max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+      <div class="mx-20 my-1">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Flag_of_Wales.svg/512px-Flag_of_Wales.svg.png"
+          class="w-full rounded-lg" />
+      </div>
+      <button type="button"
+        class="mt-1 px-5 py-2.5 w-full rounded-lg text-black text-sm tracking-wider font-semibold border-[1px] outline-none bg-white hover:bg-gray-100">Wales</button>
+    </div>
+  </div>
+  <div>
+    <div class="bg-white border p-2 w-full max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+      <div class="mx-20 my-1">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag_of_Northern_Ireland_%281953%E2%80%931972%29.svg/600px-Flag_of_Northern_Ireland_%281953%E2%80%931972%29.svg.png"
+          class="w-full rounded-lg" />
+      </div>
+      <button type="button"
+        class="mt-1 px-5 py-2.5 w-full rounded-lg text-black text-sm tracking-wider font-semibold border-[1px] outline-none bg-white hover:bg-gray-100">Northern Ireland</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- -----------------blog------------------------- -->
+
+<div class="bg-gray-50 sm:px-6 px-4 py-10 font-[sans-serif]">
+<div class="max-w-7xl mx-auto">
+  <div class="text-center">
+    <h2 class="text-3xl font-extrabold text-[#333] inline-block">BLOGS</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16 max-md:max-w-lg mx-auto">
+    <div class="cursor-pointer rounded overflow-hidden group border p-3 rounded-lg">
+      <div>
+        <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">A Guide to Igniting Your
+          Imagination</h3>
+        <div class="mt-4">
+          <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan,
+            nunc et tempus blandit, metus mi consectetur felis turpis vitae ligula.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cursor-pointer rounded overflow-hidden group border p-3 rounded-lg">
+      <div>
+        <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">Hacks to Supercharge Your
+          Day</h3>
+        <div class="mt-4">
+          <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan,
+            nunc et tempus blandit, metus mi consectetur felis turpis vitae ligula.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cursor-pointer rounded overflow-hidden group border p-3 rounded-lg">
+      <div>
+        <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">Trends and Predictions
+        </h3>
+        <div class="mt-4">
+          <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan,
+            nunc et tempus blandit, metus mi consectetur felis turpis vitae ligula.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cursor-pointer rounded overflow-hidden group border p-3 rounded-lg">
+      <div>
+        <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">Trends and Predictions
+        </h3>
+        <div class="mt-4">
+          <p class="text-gray-400 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan,
+            nunc et tempus blandit, metus mi consectetur felis turpis vitae ligula.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{%endblock%}

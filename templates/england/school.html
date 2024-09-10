@@ -1,0 +1,42 @@
+{% extends 'england/core.html'%}
+{% block title %} {{ county.name }}, {{ region.name }}, England {% endblock %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4 text-center">Find Nearest Schools in UK (England, Wales, Scotland, Northern Ireland)</h1>
+<section class="flex items-center justify-center">
+    <div class="max-w-md w-full bg-white rounded-lg p-6">
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div class="flex flex-col space-y-2">
+                {{ form.text_field }}
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Search</button>
+        </form>
+
+        {% if flag %}
+            {% if feedback_message.schools %}
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold mb-2">List of nearest schools:</h2>
+                <ul class="list-disc pl-5 space-y-1">
+                {% for school in feedback_message.schools %}
+                    <li class="text-gray-700">{{ school }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+            <p class="text-red-500">No schools found.</p>
+            {% endif %}
+            
+            <!-- <div class="mt-6">
+                <h2 class="text-xl font-semibold mb-2">Bus Stations:</h2>
+                <ul class="list-disc pl-5 space-y-1">
+                {% for school in feedback_message.busStops %}
+                    <li class="text-gray-700">{{ school }}</li>
+                {% endfor %}
+                </ul>
+            </div> -->
+        {% else %}
+            <p class="text-red-500">{{ feedback_message }}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
