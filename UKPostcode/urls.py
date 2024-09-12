@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('England.urls')),
     path('', include('Scotland.urls')),
+    path('', include('wales.urls')),
     # path('/parcel-tracker/', views.parcel_tracker, name='parcel-tracker'),
 ]
 

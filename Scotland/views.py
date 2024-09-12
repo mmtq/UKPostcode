@@ -36,10 +36,10 @@ def postcode(request, postcode):
     ward_slug = slugify(ward)
     district = postcode_query.District
     district_slug = slugify(district)
-    for field in postcode_query._meta.fields:
-        field_name = field.name
-        field_value = getattr(postcode_query, field_name)
-        print(f"{field_name}: {field_value}")
+    # for field in postcode_query._meta.fields:
+    #     field_name = field.name
+    #     field_value = getattr(postcode_query, field_name)
+    #     print(f"{field_name}: {field_value}")
 
     context = {
         'postcode': postcode_query,

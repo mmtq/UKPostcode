@@ -6,51 +6,48 @@ import csv
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'UKPostcode.settings')
 django.setup()
 
-from Scotland.models import PostcodeData
-
+from NorthernIreland.models import PostcodeData
 # Function to import CSV data into Django model
 FIELD_MAP = {
-    'Postcode': 'Postcode',
-    'Latitude': 'Latitude',
-    'Longitude': 'Longitude',
-    'Easting': 'Easting',
-    'Northing': 'Northing',
-    'Grid Ref': 'Grid_Ref',
-    'District': 'District',
-    'Ward': 'Ward',
-    'District Code': 'District_Code',
-    'Ward Code': 'Ward_Code',
-    'Country': 'Country',
-    'County Code': 'County_Code',
-    'Population': 'Population',
-    'Households': 'Households',
-    'Lower layer super output area': 'Lower_layer_super_output_area',
-    'Rural/urban': 'Rural_urban',
-    'Region': 'Region',
-    'Altitude': 'Altitude',
-    'LSOA Code': 'LSOA_Code',
-    'MSOA Code': 'MSOA_Code',
-    'Middle layer super output area': 'Middle_layer_super_output_area',
-    'Parish Code': 'Parish_Code',
-    'Census output area': 'Census_output_area',
-    'Index of Multiple Deprivation': 'Index_of_Multiple_Deprivation',
-    'Nearest station': 'Nearest_station',
-    'Distance to station': 'Distance_to_station',
-    'Postcode area': 'Postcode_area',
-    'Postcode district': 'Postcode_district',
-    'Police force': 'Police_force',
-    'Water company': 'Water_company',
-    'Plus Code': 'Plus_Code',
-    'Travel To Work Area': 'Travel_To_Work_Area',
-    'ITL level 2': 'ITL_level_2',
-    'ITL level 3': 'ITL_level_3',
-    'Distance to sea': 'Distance_to_sea',
-    'Census output area 2021': 'Census_output_area_2021',
-    'IMD decile': 'IMD_decile',
-    'Constituency Code 2024': 'Constituency_Code_2024',
-    'Constituency Name 2024': 'Constituency_Name_2024',
-    'Property Type': 'Property_Type',
+    'Postcode': 'postcode',
+    'Latitude': 'latitude',
+    'Longitude': 'longitude',
+    'Easting': 'easting',
+    'Northing': 'northing',
+    'Grid Ref': 'grid_ref',
+    'District': 'district',
+    'Ward': 'ward',
+    'District Code': 'district_code',
+    'Ward Code': 'ward_code',
+    'Country': 'country',
+    'County Code': 'county_code',
+    'Lower layer super output area': 'lower_layer_super_output_area',
+    'Region': 'region',
+    'Altitude': 'altitude',
+    'LSOA Code': 'lsoa_code',
+    'MSOA Code': 'msoa_code',
+    'Middle layer super output area': 'middle_layer_super_output_area',
+    'Parish Code': 'parish_code',
+    'Census output area': 'census_output_area',
+    'Index of Multiple Deprivation': 'index_of_multiple_deprivation',
+    'Quality': 'quality',
+    'User Type': 'user_type',
+    'Last updated': 'last_updated',
+    'Postcode area': 'postcode_area',
+    'Postcode district': 'postcode_district',
+    'Police force': 'police_force',
+    'Water company': 'water_company',
+    'Plus Code': 'plus_code',
+    'Travel To Work Area': 'travel_to_work_area',
+    'ITL level 2': 'itl_level_2',
+    'ITL level 3': 'itl_level_3',
+    'Distance to sea': 'distance_to_sea',
+    'Census output area 2021': 'census_output_area_2021',
+    'Constituency Code 2024': 'constituency_code_2024',
+    'Constituency Name 2024': 'constituency_name_2024'
 }
+
+
 
 def import_csv_to_model(csv_file_path):
     with open(csv_file_path, mode='r', encoding='utf-8-sig') as csv_file:  # Use 'utf-8-sig' to handle BOM
@@ -74,7 +71,7 @@ def import_csv_to_model(csv_file_path):
                 print(f"Unexpected error processing row {row}: {e}")
 
 # Path to your CSV file
-csv_file_path = 'scotland.csv'
+csv_file_path = 'bt.csv'
 
 # Call the function to import data
 import_csv_to_model(csv_file_path)
