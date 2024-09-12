@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('England.urls')),
     path('', include('Scotland.urls')),
     path('', include('wales.urls')),
+    path('', include('NorthernIreland.urls')),
     # path('/parcel-tracker/', views.parcel_tracker, name='parcel-tracker'),
 ]
 
