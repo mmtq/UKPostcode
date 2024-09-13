@@ -1,14 +1,14 @@
 {% extends 'england/core.html'%}
-{% block title %}{{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}{% endblock %}
+{% block title %}Postcode '{{postcode.postcode}}', {{postcode.ward}}, {{postcode.district}}{% endblock %}
 {% block content %}
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
-    <li class="text-gray-500 text-base cursor-pointer">
-        <a href="/england/{{region_slug}}/{{county_slug}}/{{district_slug}}/">{{postcode.district}}</a>
+    <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
+        <a href="/nir/{{district_slug}}/">{{postcode.district}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
-    <li class="text-gray-500 text-base cursor-pointer">
-        <a href="/england/{{region_slug}}/{{county_slug}}/{{district_slug}}/{{ward_slug}}/">{{postcode.ward}}</a>
+    <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
+        <a href="/nir/{{district_slug}}/{{ward_slug}}/">{{postcode.ward}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-[#333] text-base cursor-pointer font-semibold whitespace-nowrap">
@@ -18,7 +18,7 @@
 
 <!-- -----------data---------- -->
 <div class="p-4">
-    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">{{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> {{postcode.county}} </span></h1>
+    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcode '{{postcode.postcode}}', {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> Northern Ireland </span></h1>
     <!-- <p class="text-gray-800 leading-relaxed text-base">
         Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
     </p> -->

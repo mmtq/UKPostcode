@@ -4,11 +4,11 @@
 {% block content %}
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
-        <a href="/england/{{region.slug}}/{{county.slug}}/">{{county.name}}</a>
+        <a href="/wales/{{county.slug}}/">{{county.name}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
-        <a href="/england/{{region.slug}}/{{county.slug}}/{{district.slug}}/">{{district.name}}</a>
+        <a href="/wales/{{county.slug}}/{{district.slug}}/">{{district.name}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">
@@ -18,8 +18,7 @@
 <div class="p-4">
   <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcodes in {{ward.name}}, {{district.name}} <span class="text-gray-600 text-sm"> {{county.name}} </span></h1>
   <p class="text-gray-800 leading-relaxed text-base">
-      Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
-  </p>
+    Select a postcode below to find associated information, including geography, administrative areas, demography, nearest stations, schools, and more.</p>
 </div>
 
 <div class="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2 p-4 justify-center items-center">
@@ -49,7 +48,7 @@
     {% for code in postcodes %}
             <tr onclick="window.location.href='/wales/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
               <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                {{code.postcode}}
+                <a href="/wales/{{code.postcode | replace_spaces}}/"></a>{{code.postcode}}
               </td>
               <td class="px-4 py-4 text-sm text-gray-800">
                 {{code.latitude}}

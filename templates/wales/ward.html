@@ -1,13 +1,13 @@
 {% extends 'england/core.html'%}
-{% block title %} {{ district.name }}, {{ county.name }}, {{ region.name }}, England {% endblock %}
+{% block title %} {{ district.name }}, {{ county.name }}, Wales {% endblock %}
 {% block content %}
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
-        <a href="/england/">{{region.name}}</a>
+        <a href="/wales/">Wales</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
-        <a href="/england/{{region.slug}}">{{county.name}}</a>
+        <a href="/wales/{{county.slug}}">{{county.name}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">
@@ -15,7 +15,7 @@
     </li>
 </ul>
 <div class="p-4">
-    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcodes in {{district.name}}, {{county.name}} <span class="text-gray-600 text-sm"> {{region.name}}</span></h1>
+    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcodes in {{district.name}}, {{county.name}} <span class="text-gray-600 text-sm">Wales</span></h1>
     <p class="text-gray-800 leading-relaxed text-base">
         Select a ward below to see the list of all the postcodes in that ward.
     </p>

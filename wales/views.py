@@ -51,6 +51,8 @@ def postcode(request, postcode):
     ward_slug = slugify(ward)
     district = postcode_query.district
     district_slug = slugify(district)
+    county = postcode_query.county
+    county_slug = slugify(county)
 
     context = {
         'postcode': postcode_query,
@@ -58,5 +60,7 @@ def postcode(request, postcode):
         'ward_slug': ward_slug,
         'district': district,
         'district_slug': district_slug,
+        'county': county,
+        'county_slug': county_slug
     }
     return render(request, 'wales/single-postcode.html', context)

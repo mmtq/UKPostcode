@@ -1,5 +1,5 @@
 {% extends 'england/core.html'%}
-{% block title %} Postcodes in {{ward.name}}, {{district.name}}, {{county.name}} {% endblock %}
+{% block title %} Postcodes in {{ward.name}}, {{ward.district.name}}, Scotland{% endblock %}
 {% load custom_filters %}
 {% block content %}
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
@@ -18,7 +18,7 @@
 <div class="p-4">
   <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcodes in {{ward.name}}, {{ward.district.name}} <span class="text-gray-600 text-sm"> Scotland </span></h1>
   <p class="text-gray-800 leading-relaxed text-base">
-      Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
+    Select a postcode below to find associated information, including geography, administrative areas, demography, nearest stations, schools, and more.
   </p>
 </div>
 
@@ -49,7 +49,7 @@
     {% for code in postcodes %}
             <tr onclick="window.location.href='/scotland/{{code.Postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
               <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                {{code.Postcode}}
+                <a href="/scotland/{{code.Postcode | replace_spaces}}/"></a>{{code.Postcode}}
               </td>
               <td class="px-4 py-4 text-sm text-gray-800">
                 {{code.Latitude}}

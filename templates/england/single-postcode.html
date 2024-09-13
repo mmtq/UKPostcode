@@ -3,11 +3,11 @@
 {% block content %}
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
-    <li class="text-gray-500 text-base cursor-pointer">
+    <li class="text-gray-500 hover:text-[#007bff] text-base cursor-pointer">
         <a href="/england/{{region_slug}}/{{county_slug}}/{{district_slug}}/">{{postcode.district}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
-    <li class="text-gray-500 text-base cursor-pointer">
+    <li class="text-gray-500 hover:text-[#007bff] text-base cursor-pointer">
         <a href="/england/{{region_slug}}/{{county_slug}}/{{district_slug}}/{{ward_slug}}/">{{postcode.ward}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
@@ -282,5 +282,11 @@
      </table>
     </div>
 </div>
+
+<!-- <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
+    {%for x in random%}
+    <div>{{x.postcode}}</div>
+    {%endfor%}
+</div> -->
 
 {%endblock%}

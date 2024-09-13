@@ -74,6 +74,7 @@ def postcode(request, postcode):
     county_slug = slugify(county)
     region = postcode_query.region
     region_slug = slugify(region)
+    # random = models.PostcodeData.objects.order_by('?')[:9]
     # for field in postcode_query._meta.fields:
     #     field_name = field.name
     #     field_value = getattr(postcode_query, field_name)
@@ -84,6 +85,6 @@ def postcode(request, postcode):
         'ward_slug': ward_slug,
         'district_slug': district_slug,
         'county_slug': county_slug,
-        'region_slug': region_slug
+        'region_slug': region_slug,
     }
     return render(request, 'england/single-postcode.html', context)
