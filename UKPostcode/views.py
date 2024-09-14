@@ -1,30 +1,34 @@
 import requests
 from django.shortcuts import render
 from England.forms import FeedbackForm
+from England import models as E
+from Scotland import models as S
+from wales import models as W
+from NorthernIreland import models as N
 import json
 
-def parcel_tracker(request):
-    api_key = 'asat_35f85fe1123348adaa4ff5189a678734'
+# def parcel_tracker(request):
+#     api_key = 'asat_35f85fe1123348adaa4ff5189a678734'
 
-    # Endpoint URL
-    url = 'https://api.aftership.com/v4/trackings'
+#     # Endpoint URL
+#     url = 'https://api.aftership.com/v4/trackings'
 
-    # Headers for authentication
-    headers = {
-        'Content-Type': 'application/json',
-        'aftership-api-key': api_key
-    }
+#     # Headers for authentication
+#     headers = {
+#         'Content-Type': 'application/json',
+#         'aftership-api-key': api_key
+#     }
 
-    # Example tracking number
-    tracking_number = 'FF924848872GB'
+#     # Example tracking number
+#     tracking_number = 'FF924848872GB'
 
-    # API request
-    response = requests.get(f'{url}/{tracking_number}', headers=headers)
+#     # API request
+#     response = requests.get(f'{url}/{tracking_number}', headers=headers)
 
-    # Print the response
-    context = response.json()
+#     # Print the response
+#     context = response.json()
 
-    return render(request, 'parcel.html', context)
+#     return render(request, 'parcel.html', context)
 
 def schools_view(request):
     feedback_message = None  # Initialize feedback_message as None
@@ -95,4 +99,28 @@ def busStops_view(request):
 
     # Render the template with the form, no feedback_message, and flag 0
     return render(request, 'england/busStops.html', {'form': form, 'flag': flag})
+
+def search_view(request):
+    search_term = request.GET.get('s','')
+    search_type = request.GET.get('search_type', 'postcode')
+    if search_term:
+        england_postcodes = E.PostcodeData.objects.filter(postcode__icontains=search_term)
+        scotland_postcodes = S.PostcodeData.objects.filter(Postcode__icontains=search_term)
+        wales_postcodes = W.PostcodeData.objects.filter(postcode__icontains=search_term)
+        ni_postcodes = N.PostcodeData.objects.filter(postcode__icontains=search_term)
+        postcodes = {}
+        if england_postcodes.exists():
+            postcodes['England'] = england_postcodes
+        if scotland_postcodes.exists():
+            postcodes['Scotland'] = scotland_postcodes
+        if wales_postcodes.exists():
+            postcodes['Wales'] = wales_postcodes
+        if ni_postcodes.exists():
+            postcodes['Northern Ireland'] = ni_postcodes
+
+    context = {
+        'postcodes': postcodes,
+        'search_term': search_term
+    }
+    return render(request, 'search.html', context)
 

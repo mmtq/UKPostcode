@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -7,68 +8,96 @@
   <title>{% block title %}UK Postcode{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/static/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
   <style>
     :root {
       color-scheme: light;
     }
+
     /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap');
 
-/* General body styling */
-body {
-    font-family: 'Roboto', sans-serif;
-    /* font-size: 16px;
+    /* General body styling */
+    body {
+      font-family: 'Roboto', sans-serif;
+      /* font-size: 16px;
     line-height: 1.6; */
-    /* color: #333; */
-    margin: 0;
-    padding: 0;
-    /* background-color: #f8f9fa; */
-}
+      /* color: #333; */
+      margin: 0;
+      padding: 0;
+      /* background-color: #f8f9fa; */
+    }
 
-/* Headings styling */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    color: #222;
-    margin-bottom: 20px;
-}
-h1::before{
-    content: "📫";
-}
-/* Header levels */
-h1 {
-    font-size: 36px;
-    font-weight: 600;
-}
+    /* Headings styling */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Montserrat', sans-serif;
+      color: #222;
+      margin-bottom: 20px;
+    }
 
-h2 {
-    font-size: 30px;
-    font-weight: 600;
-}
+    h1::before {
+      content: "📫";
+    }
 
-h3 {
-    font-size: 24px;
-    font-weight: 600;
-}
+    /* Header levels */
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+    }
 
-h4, h5, h6 {
-    font-size: 18px;
-    font-weight: 400;
-}
+    h2 {
+      font-size: 30px;
+      font-weight: 600;
+    }
 
-/* Links */
-/* a {
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    h4,
+    h5,
+    h6 {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    /* Links */
+    /* a {
     color: #007bff;
     text-decoration: none;
 } */
 
-/* a:hover {
+    /* a:hover {
     text-decoration: underline;
 }
  */
-/* Paragraphs */
-p {
-    margin-bottom: 20px;
+    /* Paragraphs */
+    p {
+      margin-bottom: 20px;
+    }
+    .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10; /* Ensure dropdown is on top */
+}
+
+/* Highlight the selected item */
+.item.selected {
+    color: #3b82f6; /* Blue background */
 }
 
   </style>
@@ -128,10 +157,12 @@ p {
             </ul>
           </li>
           <li class='max-lg:border-b max-lg:py-3 px-3'><a href='/nearby-bus-stops/'
-              class='hover:text-[#007bff] {% if request.path == "/nearby-bus-stops/" %} text-[#007bff] {% else %} text-gray-700 {% endif %} block font-semibold text-[15px]'>Nearby Bus Stop Finder</a>
+              class='hover:text-[#007bff] {% if request.path == "/nearby-bus-stops/" %} text-[#007bff] {% else %} text-gray-700 {% endif %} block font-semibold text-[15px]'>Nearby
+              Bus Stop Finder</a>
           </li>
           <li class='max-lg:border-b max-lg:py-3 px-3'><a href='/nearby-schools/'
-              class='hover:text-[#007bff] {% if request.path == "/nearby-schools/" %} text-[#007bff] {% else %} text-gray-700 {% endif %} block font-semibold text-[15px]'>Nearby School Finder</a>
+              class='hover:text-[#007bff] {% if request.path == "/nearby-schools/" %} text-[#007bff] {% else %} text-gray-700 {% endif %} block font-semibold text-[15px]'>Nearby
+              School Finder</a>
           </li>
           <!-- <li class='max-lg:border-b max-lg:py-3 px-3'><a href='javascript:void(0)'
               class='lg:hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]'>Blog</a>
@@ -150,25 +181,72 @@ p {
         </svg>
       </button>
 
-      <div class='flex lg:ml-auto max-lg:w-full'>
-        <div
-          class='flex xl:w-80 max-xl:w-full bg-gray-100 px-6 py-3 rounded outline outline-transparent focus-within:outline-[#007bff] focus-within:bg-transparent'>
-          <input type='text' placeholder='Search a place or postcode...'
+      <div class='flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg'>
+        <!-- <div class="flex items-center  px-6 py-3 ">
+          <span id="postcode-label" class="text-sm mr-2 text-gray-600">Postcode</span>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="search_type" value="place" class="sr-only peer" />
+            <div
+              class="w-11 h-3 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-0 peer-checked:after:-left-1 after:bg-white after:border after:border-gray-300 peer-checked:after:border-[#007bff] after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#007bff]">
+            </div>
+          </label>
+          <span id="place-label" class="text-sm mx-2 text-gray-600">Place</span>
+        </div>
+        <form action="/search/" method="get"
+          class='flex xl:w-80 max-xl:w-full px-6 py-3 outline outline-transparent focus-within:bg-transparent'
+          onsubmit="return validateSearchTerm();">
+          <input autocomplete="off" type='text' name='s' required placeholder='Search' id="search-input"
             class='w-full text-sm bg-transparent rounded outline-none pr-2' />
+          <input type="hidden" name="search_type" value="postcode" />
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
             class="cursor-pointer fill-gray-400">
             <path
               d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
             </path>
           </svg>
+        </form>
+      </div> -->
+      <div class="searchbar-inner flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
+            class="cursor-pointer fill-gray-400 mx-2">
+            <path
+              d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+            </path>
+          </svg>
+        <form class="search-form flex xl:w-2/3 max-xl:w-full outline outline-transparent focus-within:bg-transparent">
+            <input
+                name="s"
+                class="search-input w-full p-2 focus:outline-none"
+                type="text"
+                placeholder="Search Postcode..."
+                autocomplete="off"
+            />
+        </form>
+        <div class="search-options relative ml-2 cursor-pointer">
+            <div id="dropdown-header" class="dropdown-header text-gray-600 flex items-center justify-between p-2  text-sm">
+                <span id="selected-option">Postcode</span>
+                <svg class="icon-chevron w-2.5 h-1.5 fill-current text-gray-600 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                    <path d="M10 .969L9.037 0 5 4.063.963 0 0 .969 5 6z" />
+                  </svg>                  
+            </div>
+            <div id="dropdown-menu" class="dropdown-menu px-2 absolute bg-gray-100 text-gray-600 text-sm hidden">
+                <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Postcode" ph="Search Postcode">
+                    <span class="flex-1">Postcode</span>
+                </a>
+                <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Location" ph="Search Location">
+                    <span class="flex-1">Location</span>
+                </a>
+            </div>
         </div>
-      </div>
+    </div>
+
     </div>
   </header>
 
   <!-- hero section -->
-{% block body %}
-{%endblock%}
+  {% block body %}
+
+  {%endblock%}
 
 
   <!-- footer------------------- -->
@@ -177,9 +255,12 @@ p {
     <div class="grid max-md-grid-cols-1 lg:grid-cols-2 gap-20">
       <div>
         <h4 class="text-gray-100 font-bold text-lg">About Us</h4>
-        <p class="text-sm mt-6 text-gray-300">This website offers a simple way to find UK postcode information and related data. You can search for a postcode and get details about the area, including nearby schools, bus stops, train stations, and more. It's an easy tool for anyone looking to learn more about a specific location.
+        <p class="text-sm mt-6 text-gray-300">This website offers a simple way to find UK postcode information and
+          related data. You can search for a postcode and get details about the area, including nearby schools, bus
+          stops, train stations, and more. It's an easy tool for anyone looking to learn more about a specific location.
           <a href='javascript:void(0)' class="text-sm font-semibold text-[#007bff]">Read
-            more</a></p>
+            more</a>
+        </p>
 
         <ul class="grid sm:grid-cols-2 mt-12 gap-2">
           <!-- <li class="flex items-center max-sm:mb-8">
@@ -210,7 +291,7 @@ p {
             </a>
           </li>
         </ul>
-        
+
       </div>
 
       <div>
@@ -222,7 +303,8 @@ p {
           <input type='email' placeholder='Enter your email' required
             class="w-full outline-none text-gray-300 text-sm bg-transparent pl-4" />
           <button type='button'
-            class="bg-gray-100 hover:bg-white transition-all text-gray-600 font-semibold text-sm rounded-full px-5 py-2 ml-4"><a href="">Submit</a></button>
+            class="bg-gray-100 hover:bg-white transition-all text-gray-600 font-semibold text-sm rounded-full px-5 py-2 ml-4"><a
+              href="">Submit</a></button>
         </div>
 
         <!-- <ul class="flex items-center justify-end mt-8 space-x-4">
@@ -233,7 +315,7 @@ p {
                   d="M6.812 13.937H9.33v9.312c0 .414.335.75.75.75l4.007.001a.75.75 0 0 0 .75-.75v-9.312h2.387a.75.75 0 0 0 .744-.657l.498-4a.75.75 0 0 0-.744-.843h-2.885c.113-2.471-.435-3.202 1.172-3.202 1.088-.13 2.804.421 2.804-.75V.909a.75.75 0 0 0-.648-.743A26.926 26.926 0 0 0 15.071 0c-7.01 0-5.567 7.772-5.74 8.437H6.812a.75.75 0 0 0-.75.75v4c0 .414.336.75.75.75zm.75-3.999h2.518a.75.75 0 0 0 .75-.75V6.037c0-2.883 1.545-4.536 4.24-4.536.878 0 1.686.043 2.242.087v2.149c-.402.205-3.976-.884-3.976 2.697v2.755c0 .414.336.75.75.75h2.786l-.312 2.5h-2.474a.75.75 0 0 0-.75.75V22.5h-2.505v-9.312a.75.75 0 0 0-.75-.75H7.562z"
                   data-original="#000000" />
               </svg> -->
-            <!-- </a>
+        <!-- </a>
           </li>
           <li class="bg-[#343538] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
             <a href="javascript:void(0)">
@@ -294,6 +376,110 @@ p {
       <p class='text-sm text-gray-300 lg:ml-auto max-lg:mt-6'>©UK Postcode. All rights reserved.</p>
     </div>
   </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkbox = document.querySelector('input[type="checkbox"][name="search_type"]');
+      const postcodeLabel = document.getElementById('postcode-label');
+      const placeLabel = document.getElementById('place-label');
+      const hiddenInput = document.querySelector('input[type="hidden"][name="search_type"]');
+
+      // Initialize state based on checkbox
+      const updateLabels = () => {
+        if (checkbox.checked) {
+          placeLabel.classList.add('text-blue-600');
+          postcodeLabel.classList.remove('text-blue-600');
+          hiddenInput.value = 'place';
+        } else {
+          postcodeLabel.classList.add('text-blue-600');
+          placeLabel.classList.remove('text-blue-600');
+          hiddenInput.value = 'postcode';
+        }
+      };
+      // Set initial state
+      updateLabels();
+
+      // Add event listener for changes
+      checkbox.addEventListener('change', updateLabels);
+
+      const searchInput = document.getElementById('search-input');
+
+      // Clear the custom error message when the user types
+      searchInput.addEventListener('input', function () {
+        if (searchInput.value.length >= 2) {
+          searchInput.setCustomValidity(''); // Clear validity if input is valid
+        }
+      });
+
+      // Function to validate search input length
+      function validateSearchTerm() {
+        const searchTerm = searchInput.value.trim();
+
+        if (searchTerm.length < 2) {
+          searchInput.setCustomValidity('Enter two or more characters');
+          searchInput.reportValidity(); // Show validation message
+          return false; // Prevent form submission
+        } else {
+          searchInput.setCustomValidity(''); // Clear custom message if valid
+          return true; // Allow form submission
+        }
+      }
+
+      // Attach the validation to the form submission
+      document.querySelector('form').onsubmit = validateSearchTerm;
+
+
+    });
+
+
+
+    const dropdownHeader = document.getElementById('dropdown-header');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const items = dropdownMenu.querySelectorAll('.item');
+    const selectedOption = document.getElementById('selected-option');
+    const searchInput = document.querySelector('.search-input');
+
+    let isDropdownOpen = false;
+
+    // Toggle dropdown visibility
+    dropdownHeader.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+        isDropdownOpen = !isDropdownOpen;
+    });
+
+    // Handle item selection
+    const handleItemClick = (item) => {
+        items.forEach(i => i.classList.remove('selected')); // Remove highlight from all items
+        item.classList.add('selected'); // Highlight the selected item
+        selectedOption.textContent = item.getAttribute('data-value'); // Update header
+        searchInput.placeholder = item.getAttribute('ph'); // Update input
+        dropdownMenu.classList.add('hidden'); // Close dropdown
+        isDropdownOpen = false;
+    };
+
+    // Handle clicks on dropdown items
+    items.forEach(item => {
+        item.addEventListener('click', () => handleItemClick(item));
+    });
+
+    // Close dropdown if clicking outside of it
+    document.addEventListener('click', (event) => {
+        if (!dropdownHeader.contains(event.target) && !dropdownMenu.contains(event.target) && isDropdownOpen) {
+            dropdownMenu.classList.add('hidden');
+            isDropdownOpen = false;
+        }
+    });
+
+    // Automatically select the first item on load
+    const selectFirstItem = () => {
+        if (items.length > 0) {
+            handleItemClick(items[0]);
+        }
+    };
+
+    selectFirstItem();
+  </script>
 
 </body>
 

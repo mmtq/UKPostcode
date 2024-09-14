@@ -21,6 +21,7 @@ from . import settings, views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', views.search_view),
     path('', include('England.urls')),
     path('', include('Scotland.urls')),
     path('', include('wales.urls')),

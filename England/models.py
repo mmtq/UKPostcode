@@ -45,7 +45,7 @@ class Ward(models.Model):
         verbose_name_plural = "Wards"
 
 class PostcodeData(models.Model):
-    postcode = models.CharField(max_length=100)
+    postcode = models.CharField(max_length=100, db_index=True)
     latitude = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
     easting = models.CharField(max_length=100)
