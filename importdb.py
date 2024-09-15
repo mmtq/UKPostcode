@@ -96,7 +96,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'UKPostcode.settings')  # Replace with your project name
 django.setup()
 
-from England.models import PostcodeData
+from Scotland.models import PostcodeData
 
 # The actual script logic
 def populate_normalized_postcode():
@@ -105,7 +105,7 @@ def populate_normalized_postcode():
     print(f'Found {count} postcodes to update.')
 
     for postcode in postcodes:
-        normalized = postcode.postcode.replace(' ', '')
+        normalized = postcode.Postcode.replace(' ', '')
         postcode.normalized_postcode = normalized
         postcode.save(update_fields=['normalized_postcode'])
 

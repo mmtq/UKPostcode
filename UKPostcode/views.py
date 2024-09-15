@@ -6,6 +6,7 @@ from Scotland import models as S
 from wales import models as W
 from NorthernIreland import models as N
 import json
+from django.http import JsonResponse
 
 # def parcel_tracker(request):
 #     api_key = 'asat_35f85fe1123348adaa4ff5189a678734'
@@ -101,16 +102,18 @@ def busStops_view(request):
     return render(request, 'england/busStops.html', {'form': form, 'flag': flag})
 
 def search_view(request):
-    search_term = request.GET.get('s','')
+    key = request.GET.get('s','')
+    search_term = key.replace(' ', '')
     search_type = request.GET.get('search_type', 'postcode')
-    if search_term:
-        england_postcodes = E.PostcodeData.objects.filter(postcode__icontains=search_term)
-        scotland_postcodes = S.PostcodeData.objects.filter(Postcode__icontains=search_term)
-        wales_postcodes = W.PostcodeData.objects.filter(postcode__icontains=search_term)
-        ni_postcodes = N.PostcodeData.objects.filter(postcode__icontains=search_term)
+    if search_term and search_type == 'Postcode':
+        england_postcodes = E.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+        scotland_postcodes = S.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+        wales_postcodes = W.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+        ni_postcodes = N.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
         postcodes = {}
         if england_postcodes.exists():
             postcodes['England'] = england_postcodes
+            print(postcodes['England'])
         if scotland_postcodes.exists():
             postcodes['Scotland'] = scotland_postcodes
         if wales_postcodes.exists():
@@ -120,7 +123,17 @@ def search_view(request):
 
     context = {
         'postcodes': postcodes,
-        'search_term': search_term
+        'search_term': key
     }
     return render(request, 'search.html', context)
 
+def fetch_api_data(request):
+    search_term = request.GET.get('search', '')
+
+    if not search_term:
+        return JsonResponse({'error': 'No search term provided'}, status=400)
+
+    response = requests.get(f'https://www.doogal.co.uk/GetPostcode/{search_term}?output=json')
+    response = response.json()
+
+    return JsonResponse(response)

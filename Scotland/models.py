@@ -21,6 +21,7 @@ class Ward(models.Model):
 
 class PostcodeData(models.Model):
     Postcode = models.TextField(max_length=100, db_index=True)
+    normalized_postcode = models.CharField(max_length=100, db_index=True, null=True, blank=True)
     Latitude = models.TextField()
     Longitude = models.TextField()
     Easting = models.TextField()

@@ -18,17 +18,18 @@
 
 <!-- -----------data---------- -->
 <div class="p-4">
-    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">{{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> {{postcode.county}} </span></h1>
+    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">{{postcode.postcode}}, {{postcode.ward}},
+        {{postcode.district}}<span class="text-gray-600 text-sm"> {{postcode.county}} </span></h1>
     <!-- <p class="text-gray-800 leading-relaxed text-base">
         Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
     </p> -->
-  </div>
+</div>
 
 <div class="w-auto p-1 border rounded-lg">
     <div class="px-4 py-2 bg-gray-200">
         <h2 class="text-black uppercase font-semibold">Map of {{postcode.postcode}}</h2>
-      </div>
-    
+    </div>
+
     <iframe class="w-full" frameborder="0" height="300" scrolling="yes"
         src="https://maps.google.com/maps?q={{postcode.latitude}},{{postcode.longitude}}&amp;hl=en&amp;z=14&amp;output=embed">
     </iframe>
@@ -84,21 +85,72 @@
                         <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Nearest Station
                         </th>
                         <td class="border-t-0 px-4 align-middle text-gray-900 whitespace-nowrap p-4">
-                            {{postcode.nearest_station}}</td>
+                            {{postcode.nearest_station}} ({{postcode.distance_to_station}} Km)</td>
                     </tr>
                     <tr class="text-gray-500">
-                        <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Distance to
-                            Nearest Station</th>
-                        <td class="border-t-0 px-4 align-middle text-gray-900 whitespace-nowrap p-4">
-                            {{postcode.distance_to_station}} Km</td>
+                        <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Nearby Schools
+                        </th>
+                        <!-- <td class="border-t-0 px-4 align-middle  whitespace-nowrap p-4"><a class="text-[#007bff]" href="/nearby-schools/">Check</a></td> -->
+                        <td class="border-t-0 px-4 align-middle  whitespace-nowrap p-4"><!-- Trigger Button -->
+                            <button id="openModalBtn"
+                                class="bg-gray-100 text-gray-700 px-4 py-2 text-sm rounded-lg hover:bg-gray-200 border border-gray-300">
+                                Check
+                            </button>
+
+                            <!-- Modal Structure -->
+                            <div id="myModal"
+                                class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+                                <div class="bg-white rounded-lg shadow-lg p-6 w-full lg:w-1/2 md:w-2/3 relative">
+                                    <button id="closeModalBtn"
+                                        class="absolute text-3xl top-2 right-3 text-gray-500 hover:text-gray-700">
+                                        &times;
+                                    </button>
+                                    <div id="smodalData" class="overflow-auto">
+                                            <div class="h-32 flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="w-10 animate-spin fill-blue-600 block mx-auto"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 22c5.421 0 10-4.579 10-10h-2c0 4.337-3.663 8-8 8s-8-3.663-8-8c0-4.336 3.663-8 8-8V2C6.579 2 2 6.58 2 12c0 5.421 4.579 10 10 10z"
+                                                        data-original="#000000" />
+                                                </svg>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr class="text-gray-500">
-                        <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Nearby Schools</th>
-                        <td class="border-t-0 px-4 align-middle  whitespace-nowrap p-4"><a class="text-[#007bff]" href="/nearby-schools/">Check</a></td>
-                    </tr>
-                    <tr class="text-gray-500">
-                        <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Nearby Bus Stops</th>
-                        <td class="border-t-0 px-4 align-middle  whitespace-nowrap p-4"><a class="text-[#007bff]" href="/nearby-bus-stops/">Check</a></td>
+                        <th class="border-t-0 px-4 text-sm align-middle whitespace-nowrap p-4 text-left">Nearby Bus
+                            Stops</th>
+                        <td class="border-t-0 px-4 align-middle  whitespace-nowrap p-4">
+                            <button id="bopenModalBtn"
+                                class="bg-gray-100 text-gray-700 px-4 py-2 text-sm rounded-lg hover:bg-gray-200 border border-gray-300">
+                                Check
+                            </button>
+
+                            <!-- Modal Structure -->
+                            <div id="bModal"
+                                class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+                                <div class="bg-white rounded-lg shadow-lg p-6 w-full lg:w-1/2 md:w-2/3 relative">
+                                    <button id="bcloseModalBtn"
+                                        class="absolute text-3xl top-2 right-3 text-gray-500 hover:text-gray-700">
+                                        &times;
+                                    </button>
+                                    <div id="bmodalData" class="overflow-auto">
+                                            <div class="h-32 flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="w-10 animate-spin fill-blue-600 block mx-auto"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 22c5.421 0 10-4.579 10-10h-2c0 4.337-3.663 8-8 8s-8-3.663-8-8c0-4.336 3.663-8 8-8V2C6.579 2 2 6.58 2 12c0 5.421 4.579 10 10 10z"
+                                                        data-original="#000000" />
+                                                </svg>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -184,7 +236,7 @@
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.ward_code}}</td>
             </tr>
-            
+
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">District</th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
@@ -192,7 +244,7 @@
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.district_code}}</td>
             </tr>
-            
+
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">County
                 </th>
@@ -247,39 +299,45 @@
                 <td colspan="2" class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.country}}</td>
             </tr>
-            
+
         </tbody>
     </table>
 </div>
 <div class="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2 p-4 justify-center items-center">
     <div class="">
         <table class="min-w-full w-full divide-y divide-gray-200 table-fixed">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                Relevant Links for {{postcode.postcode}}
-              </th>
-            </tr>
-          </thead>
-  
-          <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
-            <tr class="">
-              <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.crime-statistics.co.uk/postcode/{{postcode.postcode}}">Crime Statistics of {{postcode.postcode}}</a>
-              </td>
-            </tr>
-            <tr class="">
-              <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.zoopla.co.uk/for-sale/property/{{postcode.postcode}}">Properties for sale in {{postcode.postcode}}</a>
-              </td>
-            </tr>
-            <tr class="">
-              <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.zoopla.co.uk/for-rent/property/{{postcode.postcode}}">Properties for rent in {{postcode.postcode}}</a>
-              </td>
-            </tr>
-        </tbody>
-     </table>
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                        Relevant Links for {{postcode.postcode}}
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
+                <tr class="">
+                    <td class="px-4 py-4 text-gray-800">
+                        <a class="hover:text-[#007bff]"
+                            href="https://www.crime-statistics.co.uk/postcode/{{postcode.postcode}}">Crime Statistics of
+                            {{postcode.postcode}}</a>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="px-4 py-4 text-gray-800">
+                        <a class="hover:text-[#007bff]"
+                            href="https://www.zoopla.co.uk/for-sale/property/{{postcode.postcode}}">Properties for sale
+                            in {{postcode.postcode}}</a>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="px-4 py-4 text-gray-800">
+                        <a class="hover:text-[#007bff]"
+                            href="https://www.zoopla.co.uk/for-rent/property/{{postcode.postcode}}">Properties for rent
+                            in {{postcode.postcode}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -288,5 +346,5 @@
     <div>{{x.postcode}}</div>
     {%endfor%}
 </div> -->
-
+<script type="text/javascript">document.getElementById("openModalBtn").addEventListener("click",function(){document.getElementById("myModal").classList.remove("hidden"),fetch(`/api/fetch-data/?search=${encodeURIComponent("{{ postcode.postcode|escapejs }}")}`).then(e=>e.json()).then(e=>{if(e.error)document.getElementById("modalData").innerHTML=`<p class="text-red-500">Error: ${e.error}</p>`;else{var t="";for(var d of e.schools)t+="<li>"+d+"</li>";document.getElementById("smodalData").innerHTML=t}}).catch(e=>{document.getElementById("modalData").innerHTML='<p class="text-red-500">Error loading data</p>'})}),document.getElementById("closeModalBtn").addEventListener("click",function(){document.getElementById("myModal").classList.add("hidden")}),window.onclick=function(e){var t=document.getElementById("myModal"),d=document.getElementById("bModal");e.target===t?t.classList.add("hidden"):e.target===d&&d.classList.add("hidden")},document.getElementById("bopenModalBtn").addEventListener("click",function(){document.getElementById("bModal").classList.remove("hidden"),fetch(`/api/fetch-data/?search=${encodeURIComponent("{{ postcode.postcode|escapejs }}")}`).then(e=>e.json()).then(e=>{if(e.error)document.getElementById("bmodalData").innerHTML=`<p class="text-red-500">Error: ${e.error}</p>`;else{var t="";for(var d of e.busStops)t+="<li>"+d+"</li>";document.getElementById("bmodalData").innerHTML=t}}).catch(e=>{document.getElementById("bmodalData").innerHTML='<p class="text-red-500">Error loading data</p>'})}),document.getElementById("bcloseModalBtn").addEventListener("click",function(){document.getElementById("bModal").classList.add("hidden")});</script>
 {%endblock%}
