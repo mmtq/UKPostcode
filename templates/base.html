@@ -88,18 +88,20 @@
     p {
       margin-bottom: 20px;
     }
+
     .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 10; /* Ensure dropdown is on top */
-}
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      /* Ensure dropdown is on top */
+    }
 
-/* Highlight the selected item */
-.item.selected {
-    color: #3b82f6; /* Blue background */
-}
-
+    /* Highlight the selected item */
+    .item.selected {
+      color: #3b82f6;
+      /* Blue background */
+    }
   </style>
   <script type="module" crossorigin src="/static/js/base.js"></script>
   <!-- <link rel="stylesheet" crossorigin href="/static/css/base.css"> -->
@@ -181,8 +183,8 @@
         </svg>
       </button>
 
-      <div class='flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg'>
-        <!-- <div class="flex items-center  px-6 py-3 ">
+      <!-- <div class='flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg'> -->
+      <!-- <div class="flex items-center  px-6 py-3 ">
           <span id="postcode-label" class="text-sm mr-2 text-gray-600">Postcode</span>
           <label class="relative cursor-pointer">
             <input type="checkbox" name="search_type" value="place" class="sr-only peer" />
@@ -208,39 +210,42 @@
       </div> -->
       <div class="searchbar-inner flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
-            class="cursor-pointer fill-gray-400 mx-2">
-            <path
-              d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-            </path>
-          </svg>
-        <form class="search-form flex xl:w-2/3 max-xl:w-full outline outline-transparent focus-within:bg-transparent">
-            <input
-                name="s"
-                class="search-input w-full p-2 focus:outline-none"
-                type="text"
-                placeholder="Search Postcode..."
-                autocomplete="off"
-            />
+          class="cursor-pointer fill-gray-600 mx-2">
+          <path
+            d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+          </path>
+        </svg>
+        
+        <!-- Form with hidden input for search type -->
+        <form class="search-form flex xl:w-2/3 max-xl:w-full outline outline-transparent focus-within:bg-transparent" method="get" action="/search/" onsubmit="return validateSearchTerm();">
+          <input name="s" id="search-input" class="search-input w-full p-2 focus:outline-none" type="text"
+            placeholder="Search Postcode..." autocomplete="off" />
+          <input type="hidden" name="search_type" id="search-type" value="Postcode">
         </form>
+      
+        <!-- Dropdown for search type -->
         <div class="search-options relative ml-2 cursor-pointer">
-            <div id="dropdown-header" class="dropdown-header text-gray-600 flex items-center justify-between p-2  text-sm">
-                <span id="selected-option">Postcode</span>
-                <svg class="icon-chevron w-2.5 h-1.5 fill-current text-gray-600 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
-                    <path d="M10 .969L9.037 0 5 4.063.963 0 0 .969 5 6z" />
-                  </svg>                  
-            </div>
-            <div id="dropdown-menu" class="dropdown-menu px-2 absolute bg-gray-100 text-gray-600 text-sm hidden">
-                <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Postcode" ph="Search Postcode">
-                    <span class="flex-1">Postcode</span>
-                </a>
-                <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Location" ph="Search Location">
-                    <span class="flex-1">Location</span>
-                </a>
-            </div>
+          <div id="dropdown-header"
+            class="dropdown-header text-gray-600 flex items-center justify-between p-2 text-sm">
+            <span id="selected-option">Postcode</span>
+            <svg class="icon-chevron w-2.5 h-1.5 fill-current text-gray-600 ml-2" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 10 6">
+              <path d="M10 .969L9.037 0 5 4.063.963 0 0 .969 5 6z" />
+            </svg>
+          </div>
+          <div id="dropdown-menu" class="dropdown-menu px-2 absolute bg-gray-100 text-gray-600 text-sm hidden">
+            <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Postcode" data-placeholder="Search Postcode">
+              <span class="flex-1">Postcode</span>
+            </a>
+            <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Location" data-placeholder="Search Location">
+              <span class="flex-1">Location</span>
+            </a>
+          </div>
         </div>
-    </div>
+      </div>
+      
 
-    </div>
+      <!-- </div> -->
   </header>
 
   <!-- hero section -->
@@ -380,28 +385,28 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const checkbox = document.querySelector('input[type="checkbox"][name="search_type"]');
-      const postcodeLabel = document.getElementById('postcode-label');
-      const placeLabel = document.getElementById('place-label');
-      const hiddenInput = document.querySelector('input[type="hidden"][name="search_type"]');
+      // const checkbox = document.querySelector('input[type="checkbox"][name="search_type"]');
+      // const postcodeLabel = document.getElementById('postcode-label');
+      // const placeLabel = document.getElementById('place-label');
+      // const hiddenInput = document.querySelector('input[type="hidden"][name="search_type"]');
 
-      // Initialize state based on checkbox
-      const updateLabels = () => {
-        if (checkbox.checked) {
-          placeLabel.classList.add('text-blue-600');
-          postcodeLabel.classList.remove('text-blue-600');
-          hiddenInput.value = 'place';
-        } else {
-          postcodeLabel.classList.add('text-blue-600');
-          placeLabel.classList.remove('text-blue-600');
-          hiddenInput.value = 'postcode';
-        }
-      };
-      // Set initial state
-      updateLabels();
+      // // Initialize state based on checkbox
+      // const updateLabels = () => {
+      //   if (checkbox.checked) {
+      //     placeLabel.classList.add('text-blue-600');
+      //     postcodeLabel.classList.remove('text-blue-600');
+      //     hiddenInput.value = 'place';
+      //   } else {
+      //     postcodeLabel.classList.add('text-blue-600');
+      //     placeLabel.classList.remove('text-blue-600');
+      //     hiddenInput.value = 'postcode';
+      //   }
+      // };
+      // // Set initial state
+      // updateLabels();
 
-      // Add event listener for changes
-      checkbox.addEventListener('change', updateLabels);
+      // // Add event listener for changes
+      // checkbox.addEventListener('change', updateLabels);
 
       const searchInput = document.getElementById('search-input');
 
@@ -434,51 +439,90 @@
 
 
 
+    // const dropdownHeader = document.getElementById('dropdown-header');
+    // const dropdownMenu = document.getElementById('dropdown-menu');
+    // const items = dropdownMenu.querySelectorAll('.item');
+    // const selectedOption = document.getElementById('selected-option');
+    // const searchInput = document.querySelector('.search-input');
+
+    // let isDropdownOpen = false;
+
+    // // Toggle dropdown visibility
+    // dropdownHeader.addEventListener('click', () => {
+    //   dropdownMenu.classList.toggle('hidden');
+    //   isDropdownOpen = !isDropdownOpen;
+    // });
+
+    // // Handle item selection
+    // const handleItemClick = (item) => {
+    //   items.forEach(i => i.classList.remove('selected')); // Remove highlight from all items
+    //   item.classList.add('selected'); // Highlight the selected item
+    //   selectedOption.textContent = item.getAttribute('data-value'); // Update header
+    //   searchInput.placeholder = item.getAttribute('ph'); // Update input
+    //   dropdownMenu.classList.add('hidden'); // Close dropdown
+    //   isDropdownOpen = false;
+    // };
+
+    // // Handle clicks on dropdown items
+    // items.forEach(item => {
+    //   item.addEventListener('click', () => handleItemClick(item));
+    // });
+
+    // // Close dropdown if clicking outside of it
+    // document.addEventListener('click', (event) => {
+    //   if (!dropdownHeader.contains(event.target) && !dropdownMenu.contains(event.target) && isDropdownOpen) {
+    //     dropdownMenu.classList.add('hidden');
+    //     isDropdownOpen = false;
+    //   }
+    // });
+
+    // // Automatically select the first item on load
+    // const selectFirstItem = () => {
+    //   if (items.length > 0) {
+    //     handleItemClick(items[0]);
+    //   }
+    // };
+
+    // selectFirstItem();
+
     const dropdownHeader = document.getElementById('dropdown-header');
     const dropdownMenu = document.getElementById('dropdown-menu');
-    const items = dropdownMenu.querySelectorAll('.item');
+    const searchTypeInput = document.getElementById('search-type');
+    const searchInput = document.getElementById('search-input');
     const selectedOption = document.getElementById('selected-option');
-    const searchInput = document.querySelector('.search-input');
 
-    let isDropdownOpen = false;
-
-    // Toggle dropdown visibility
-    dropdownHeader.addEventListener('click', () => {
+    // Toggle dropdown menu visibility
+    dropdownHeader.addEventListener('click', function() {
         dropdownMenu.classList.toggle('hidden');
-        isDropdownOpen = !isDropdownOpen;
     });
 
-    // Handle item selection
-    const handleItemClick = (item) => {
-        items.forEach(i => i.classList.remove('selected')); // Remove highlight from all items
-        item.classList.add('selected'); // Highlight the selected item
-        selectedOption.textContent = item.getAttribute('data-value'); // Update header
-        searchInput.placeholder = item.getAttribute('ph'); // Update input
-        dropdownMenu.classList.add('hidden'); // Close dropdown
-        isDropdownOpen = false;
-    };
+    // Update search type when an option is clicked
+    document.querySelectorAll('.dropdown-menu .item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            const searchType = this.getAttribute('data-value');
+            const placeholder = this.getAttribute('data-placeholder');
 
-    // Handle clicks on dropdown items
-    items.forEach(item => {
-        item.addEventListener('click', () => handleItemClick(item));
-    });
+            // Update selected option in the dropdown
+            selectedOption.textContent = searchType;
 
-    // Close dropdown if clicking outside of it
-    document.addEventListener('click', (event) => {
-        if (!dropdownHeader.contains(event.target) && !dropdownMenu.contains(event.target) && isDropdownOpen) {
+            // Update hidden input value
+            searchTypeInput.value = searchType;
+
+            // Update search input placeholder
+            searchInput.setAttribute('placeholder', placeholder);
+
+            // Hide the dropdown menu after selection
             dropdownMenu.classList.add('hidden');
-            isDropdownOpen = false;
+        });
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function(e) {
+        if (!dropdownHeader.contains(e.target)) {
+            dropdownMenu.classList.add('hidden');
         }
     });
 
-    // Automatically select the first item on load
-    const selectFirstItem = () => {
-        if (items.length > 0) {
-            handleItemClick(items[0]);
-        }
-    };
-
-    selectFirstItem();
   </script>
 
 </body>

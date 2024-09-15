@@ -116,7 +116,7 @@ def search_view(request):
         if wales_postcodes.exists():
             postcodes['Wales'] = wales_postcodes
         if ni_postcodes.exists():
-            postcodes['Northern Ireland'] = ni_postcodes
+            postcodes['NorthernIreland'] = ni_postcodes
 
     context = {
         'postcodes': postcodes,
