@@ -183,52 +183,14 @@
         </svg>
       </button>
 
-      <!-- <div class='flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg'> -->
-      <!-- <div class="flex items-center  px-6 py-3 ">
-          <span id="postcode-label" class="text-sm mr-2 text-gray-600">Postcode</span>
-          <label class="relative cursor-pointer">
-            <input type="checkbox" name="search_type" value="place" class="sr-only peer" />
-            <div
-              class="w-11 h-3 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-0 peer-checked:after:-left-1 after:bg-white after:border after:border-gray-300 peer-checked:after:border-[#007bff] after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#007bff]">
-            </div>
-          </label>
-          <span id="place-label" class="text-sm mx-2 text-gray-600">Place</span>
-        </div>
-        <form action="/search/" method="get"
-          class='flex xl:w-80 max-xl:w-full px-6 py-3 outline outline-transparent focus-within:bg-transparent'
-          onsubmit="return validateSearchTerm();">
-          <input autocomplete="off" type='text' name='s' required placeholder='Search' id="search-input"
-            class='w-full text-sm bg-transparent rounded outline-none pr-2' />
-          <input type="hidden" name="search_type" value="postcode" />
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
-            class="cursor-pointer fill-gray-400">
-            <path
-              d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-            </path>
-          </svg>
-        </form>
-      </div> -->
-      <div class="searchbar-inner flex lg:ml-auto max-lg:w-full bg-gray-100 rounded-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
-          class="cursor-pointer fill-gray-600 mx-2">
-          <path
-            d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-          </path>
-        </svg>
-        
-        <!-- Form with hidden input for search type -->
-        <form class="search-form flex xl:w-2/3 max-xl:w-full outline outline-transparent focus-within:bg-transparent" method="get" action="/search/" onsubmit="return validateSearchTerm();">
-          <input name="s" id="search-input" class="search-input w-full p-2 focus:outline-none" type="text"
-            placeholder="Search Postcode..." autocomplete="off" />
-          <input type="hidden" name="search_type" id="search-type" value="Postcode">
-        </form>
       
-        <!-- Dropdown for search type -->
-        <div class="search-options relative ml-2 cursor-pointer">
+      <div class="searchbar-inner flex lg:ml-auto max-lg:w-full p-1 bg-gray-100 rounded-lg">
+        
+        <div class="search-options relative  cursor-pointer">
           <div id="dropdown-header"
             class="dropdown-header text-gray-600 flex items-center justify-between p-2 text-sm">
             <span id="selected-option">Postcode</span>
-            <svg class="icon-chevron w-2.5 h-1.5 fill-current text-gray-600 ml-2" xmlns="http://www.w3.org/2000/svg"
+            <svg class="icon-chevron w-2.5 h-1.5 fill-current text-gray-600 mx-2" xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 10 6">
               <path d="M10 .969L9.037 0 5 4.063.963 0 0 .969 5 6z" />
             </svg>
@@ -237,11 +199,26 @@
             <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Postcode" data-placeholder="Search Postcode">
               <span class="flex-1">Postcode</span>
             </a>
-            <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Location" data-placeholder="Search Location">
-              <span class="flex-1">Location</span>
+            <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Area" data-placeholder="Search Area">
+              <span class="flex-1">Administrative Area</span>
             </a>
           </div>
         </div>
+        <form class="search-form flex xl:w-2/3 max-xl:w-full outline outline-transparent focus-within:bg-transparent" method="get" action="/search/" onsubmit="return validateSearchTerm();">
+          <input name="s" id="search-input" class="search-input w-full p-2 focus:outline-none" type="text"
+            placeholder="Search Postcode" autocomplete="on" />
+          <input type="hidden" name="search_type" id="search-type" value="Postcode">
+          <button type="submit" value="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
+              class="cursor-pointer fill-gray-600 mx-2">
+              <path
+                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+              </path>
+            </svg>
+          </button>
+        </form>
+      
+        
       </div>
       
 

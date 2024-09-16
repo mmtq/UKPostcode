@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class District(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100)
     code = models.CharField(max_length=100)
 
@@ -11,7 +11,7 @@ class District(models.Model):
         return self.name
 
 class Ward(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100)
     code = models.CharField(max_length=100)
     district = models.ForeignKey(District, on_delete=models.CASCADE)

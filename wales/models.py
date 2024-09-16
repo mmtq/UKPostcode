@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class county(models.Model):
-    name = models.TextField(max_length=100)
+    name = models.TextField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100)
 
     def __str__(self):
@@ -16,7 +16,7 @@ class county(models.Model):
     
 
 class district(models.Model):
-    name = models.TextField(max_length=100)
+    name = models.TextField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100)
     county = models.ForeignKey(county, on_delete=models.CASCADE)
 
@@ -28,7 +28,7 @@ class district(models.Model):
         return self.name
     
 class ward(models.Model):
-    name = models.TextField(max_length=100)
+    name = models.TextField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100)
     district = models.ForeignKey(district, on_delete=models.CASCADE)
 

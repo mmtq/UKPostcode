@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Region(models.Model):
-    name = models.CharField(max_length=100, unique=True, null=False)
+    name = models.CharField(max_length=100, unique=True, null=False, db_index=True)
     slug = models.SlugField(max_length=100, unique=True, null=False)
     def __str__(self):
         return self.name
@@ -11,7 +11,7 @@ class Region(models.Model):
         verbose_name_plural = "Regions"
 
 class County(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False, db_index=True)
     slug = models.SlugField(max_length=100, null=False)
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
     def __str__(self):
@@ -21,7 +21,7 @@ class County(models.Model):
         verbose_name_plural = "Counties"
 
 class District(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False, db_index=True)
     slug = models.SlugField(max_length=100, null=False)
     county = models.ForeignKey(County, on_delete=models.CASCADE)
 
@@ -33,7 +33,7 @@ class District(models.Model):
         verbose_name_plural = "Districts"
 
 class Ward(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False, db_index=True)
     slug = models.SlugField(max_length=100, null=False)
     district = models.ForeignKey(District, on_delete=models.CASCADE)
 

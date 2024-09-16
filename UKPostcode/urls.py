@@ -22,6 +22,7 @@ from . import settings, views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', views.search_view),
+    path('blog/uk-postcode-format/', views.blog_view),
     path('api/fetch-data/', views.fetch_api_data, name='fetch_api_data'),
     path('', include('England.urls')),
     path('', include('Scotland.urls')),

@@ -1,8 +1,8 @@
 {% extends 'england/core.html'%}
 {% load custom_filters %}
-{% block title %}Search Results for {{search_term}} {% endblock %}
+{% block title %}Search Results for "{{search_term}}" {% endblock %}
 {% block content %}
-<h2 class="text-2xl font-semibold mb-4 text-center">Search Results for {{search_term}}</h2>
+<h2 class="text-2xl font-semibold mb-4 text-center">Search Results for "{{search_term}}"</h2>
 
 {% if postcodes.England|length > 0 or postcodes.Scotland|length > 0 or postcodes.Wales|length > 0 or postcodes.NorthernIreland|length > 0%}
 <div class="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2 p-4 justify-center items-center">
@@ -113,14 +113,125 @@
                 </tr>
                 {% endfor %}
             {% endif %}
-    
         </tbody>
      </table>
     </div>
 </div>
+{% elif flag%}
+
+    {%if england.county|length > 0 or england.district|length > 0 or england.ward|length > 0 %}
+        {% if england.county|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">England ➛ Counties</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for county in england.county %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/england/{{county.region.slug}}/{{county.slug}}/">{{county.name}}, {{county.region}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if england.district|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">England ➛ Districts</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for district in england.district %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/england/{{district.county.region.slug}}/{{district.county.slug}}/{{district.slug}}/">{{district.name}}, {{district.county}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if england.ward|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">England ➛ Wards</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for ward in england.ward %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/england/{{ward.district.county.region.slug}}/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    </li>
+                {% endfor %}
+            </ul>    
+        {% endif %}
+
+    {% endif %}
+
+    {% if wales.district|length > 0 or wales.ward|length > 0 %}
+        {% if wales.district|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Districts</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for district in wales.district %}
+                    <li>
+                        <a class="hover:text-[#007bff]" href="/wales/{{district.county.slug}}/{{district.slug}}/">{{district.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if wales.ward|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Wards</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for ward in wales.ward %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/wales/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+    {% if scotland.district|length > 0 or scotland.ward|length > 0 %}
+        {% if scotland.district|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Scotland ➛ Districts</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for district in scotland.district %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/scotland/{{district.slug}}/">{{district.name}}</a>
+                    </li>
+                {% endfor %}    
+            </ul>
+        {% endif %}
+
+        {% if scotland.ward|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Wards</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for ward in scotland.ward %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/scotland/{{ward.district.slug}}/{{ward.slug}}/">{{ward.name}}, {{ward.district}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    {% endif %}
+
+    {% if ni.district|length > 0 or ni.ward|length > 0 %}
+        {% if ni.district|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Northern Ireland ➛ Districts</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for district in ni.district %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/northernireland/{{district.slug}}/">{{district.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if ni.ward|length > 0 %}
+        <h3 class="text-2xl font-bold mb-4 ">Northern Ireland ➛ Wards</h3>
+            <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
+                {% for ward in ni.ward %}
+                    <li class="mb-3 shadow-md p-2">
+                        <a class="hover:text-[#007bff]" href="/northernireland/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+
 {% else %}
 
-<div class="flex items-center justify-center h-[50vh]">
+<div class="flex items-center justify-center h-[60vh]">
     <h2 class="text-4xl font-bold">No results found</h2>
 </div>
 

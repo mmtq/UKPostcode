@@ -30,7 +30,8 @@ from django.http import JsonResponse
 #     context = response.json()
 
 #     return render(request, 'parcel.html', context)
-
+def blog_view(request):
+    return render(request, 'blog/uk-postcode.html')
 def schools_view(request):
     feedback_message = None  # Initialize feedback_message as None
     flag = 0  # Initialize the flag as 0
@@ -121,12 +122,48 @@ def search_view(request):
         if ni_postcodes.exists():
             postcodes['NorthernIreland'] = ni_postcodes
 
-    context = {
-        'postcodes': postcodes,
-        'search_term': key
-    }
-    return render(request, 'search.html', context)
+        context = {
+            'postcodes': postcodes,
+            'search_term': key
+        }
+        return render(request, 'search.html', context)
+    search_term = key
+    if search_term and search_type == 'Location':
+        england_locations = {
+            'county': E.County.objects.filter(name__icontains=search_term),
+            'district': E.District.objects.filter(name__icontains=search_term),
+            'ward': E.Ward.objects.filter(name__icontains=search_term)
+        }
 
+        scotland_locations = {
+            'district': S.District.objects.filter(name__icontains=search_term),
+            'ward': S.Ward.objects.filter(name__icontains=search_term)
+        }
+
+        wales_locations = {
+            'district': W.district.objects.filter(name__icontains=search_term),
+            'ward': W.ward.objects.filter(name__icontains=search_term)
+        }
+
+        ni_locations = {
+            'district': N.district.objects.filter(name__icontains=search_term),
+            'ward': N.ward.objects.filter(name__icontains=search_term)
+        }
+        flag = 0
+        if len(england_locations['county']) + len(england_locations['district']) + len(england_locations['ward']) > 0 or len(scotland_locations['district']) + len(scotland_locations['ward']) > 0 or len(wales_locations['district']) + len(wales_locations['ward']) > 0 or len(ni_locations['district']) + len(ni_locations['ward']) > 0:
+            flag = 1
+
+        context = {
+            'england': england_locations,
+            'scotland': scotland_locations,
+            'wales': wales_locations,
+            'ni': ni_locations,
+            'search_term': search_term,
+            'flag': flag
+        }
+
+        print(context)
+        return render(request, 'search.html', context)
 def fetch_api_data(request):
     search_term = request.GET.get('search', '')
 
