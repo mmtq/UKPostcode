@@ -128,7 +128,7 @@ def search_view(request):
         }
         return render(request, 'search.html', context)
     search_term = key
-    if search_term and search_type == 'Location':
+    if search_term and search_type == 'Area':
         england_locations = {
             'county': E.County.objects.filter(name__icontains=search_term),
             'district': E.District.objects.filter(name__icontains=search_term),
