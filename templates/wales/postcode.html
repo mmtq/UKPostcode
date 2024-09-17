@@ -47,8 +47,8 @@
           <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
     {% for code in postcodes %}
             <tr onclick="window.location.href='/wales/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
-              <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                <a href="/wales/{{code.postcode | replace_spaces}}/"></a>{{code.postcode}}
+              <td class="px-4 py-4 text-sm text-gray-800 font-semibold">
+                <a class="text-[#007bff]" href="/wales/{{code.postcode | replace_spaces}}/">{{code.postcode}}</a>
               </td>
               <td class="px-4 py-4 text-sm text-gray-800">
                 {{code.latitude}}

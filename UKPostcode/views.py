@@ -105,7 +105,7 @@ def busStops_view(request):
 def search_view(request):
     key = request.GET.get('s','')
     search_term = key.replace(' ', '')
-    search_type = request.GET.get('search_type', 'postcode')
+    search_type = request.GET.get('search_type', 'Postcode')
     if search_term and search_type == 'Postcode':
         england_postcodes = E.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
         scotland_postcodes = S.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)

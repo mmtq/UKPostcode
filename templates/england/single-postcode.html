@@ -25,40 +25,6 @@
     </p> -->
 </div>
 
-<div class="w-auto p-1 border rounded-lg">
-    <div class="px-4 py-2 bg-gray-200">
-        <h2 class="text-black uppercase font-semibold">Map of {{postcode.postcode}}</h2>
-    </div>
-
-    <iframe class="w-full" frameborder="0" height="300" scrolling="yes"
-        src="https://maps.google.com/maps?q={{postcode.latitude}},{{postcode.longitude}}&amp;hl=en&amp;z=14&amp;output=embed">
-    </iframe>
-</div>
-<div class='group max-lg:border-b p-3 my-1 relative border rounded-lg w-[140px]'>
-    <a href='javascript:void(0)' class='text-gray-600 text-[15px] font-semibold hover:fill-[#007bff] block'>View Map
-        on<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
-            viewBox="0 0 24 24">
-            <path
-                d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
-                data-name="16" data-original="#000000" />
-        </svg>
-    </a>
-    <ul
-        class='absolute shadow-lg bg-white space-y-3 min-w-[250px] top-[28px] left-[110px] z-50 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
-        <li class='border-b py-2 '><a
-                href="https://www.openstreetmap.org/?mlat={{postcode.latitude}}&mlon={{postcode.longitude}}#map=18/{{postcode.latitude}}/{{postcode.longitude}}"
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>OpenStreetMap</a></li>
-        <li class='border-b py-2 '><a
-                href='https://wego.here.com/?map={{postcode.latitude}},{{postcode.longitude}},16,normal'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>HereWeGo</a></li>
-        <li class='border-b py-2 '><a
-                href='https://www.bing.com/maps?rtp=%7Epos.{{ postcode.latitude }}_&lvl=16.0&cp={{ postcode.latitude }}%7E{{ postcode.longitude }}'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>BingMaps</a></li>
-        <li class='border-b py-2 '><a
-                href='https://www.waze.com/live-map/directions?navigate=yes&to=ll.{{ postcode.latitude }}%2C{{ postcode.longitude }}'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>Waze</a></li>
-    </ul>
-</div>
 <div class="grid lg:grid-cols-2 grid-cols-1 md:grid-cols-1 gap-4">
     <div class="">
         <div class="block w-full overflow-x-auto max-w-xl border rounded-md my-1">
@@ -205,6 +171,41 @@
         </div>
     </div>
 </div>
+<div class="w-auto p-1 border rounded-lg">
+    <div class="px-4 py-2 bg-gray-200">
+        <h2 class="text-black uppercase font-semibold">Map of {{postcode.postcode}}</h2>
+    </div>
+
+    <iframe class="w-full" frameborder="0" height="300" scrolling="yes"
+        src="https://maps.google.com/maps?q={{postcode.latitude}},{{postcode.longitude}}&amp;hl=en&amp;z=14&amp;output=embed">
+    </iframe>
+</div>
+<div class='group max-lg:border-b p-3 my-1 relative border rounded-lg w-[140px]'>
+    <a href='javascript:void(0)' class='text-gray-600 text-[15px] font-semibold hover:fill-[#007bff] block'>View Map
+        on<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
+            viewBox="0 0 24 24">
+            <path
+                d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                data-name="16" data-original="#000000" />
+        </svg>
+    </a>
+    <ul
+        class='absolute shadow-lg bg-white space-y-3 min-w-[250px] top-[28px] left-[110px] z-50 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+        <li class='border-b py-2 '><a
+                href="https://www.openstreetmap.org/?mlat={{postcode.latitude}}&mlon={{postcode.longitude}}#map=18/{{postcode.latitude}}/{{postcode.longitude}}"
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>OpenStreetMap</a></li>
+        <li class='border-b py-2 '><a
+                href='https://wego.here.com/?map={{postcode.latitude}},{{postcode.longitude}},16,normal'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>HereWeGo</a></li>
+        <li class='border-b py-2 '><a
+                href='https://www.bing.com/maps?rtp=%7Epos.{{ postcode.latitude }}_&lvl=16.0&cp={{ postcode.latitude }}%7E{{ postcode.longitude }}'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>BingMaps</a></li>
+        <li class='border-b py-2 '><a
+                href='https://www.waze.com/live-map/directions?navigate=yes&to=ll.{{ postcode.latitude }}%2C{{ postcode.longitude }}'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>Waze</a></li>
+    </ul>
+</div>
+
 <div class="block overflow-x-auto border rounded-md my-1">
     <table class="items-center w-full bg-transparent border-collapse">
         <thead>

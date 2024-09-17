@@ -33,7 +33,7 @@
                 {% for code in postcodes.England %}
                 <tr onclick="window.location.href='/england/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
                 <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                    <a href="/england/{{code.postcode | replace_spaces}}/"></a>{{code.postcode}}
+                    <a class="text-[#007bff]" href="/england/{{code.postcode | replace_spaces}}/">{{code.postcode}}</a>
                 </td>
                 <td class="px-4 py-4 text-sm text-gray-800">
                     {{code.latitude}}
@@ -54,7 +54,7 @@
                 {% for code in postcodes.Scotland %}
                 <tr onclick="window.location.href='/scotland/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
                 <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                    <a href="/scotland/{{code.postcode | replace_spaces}}/"></a>{{code.Postcode}}
+                    <a class="text-[#007bff]" href="/scotland/{{code.postcode | replace_spaces}}/">{{code.Postcode}}</a>
                 </td>
                 <td class="px-4 py-4 text-sm text-gray-800">
                     {{code.Latitude}}
@@ -75,7 +75,7 @@
                 {% for code in postcodes.Wales %}
                 <tr onclick="window.location.href='/wales/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
                 <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                    <a href="/wales/{{code.postcode | replace_spaces}}/"></a>{{code.postcode}}
+                    <a class="text-[#007bff]" href="/wales/{{code.postcode | replace_spaces}}/">{{code.postcode}}</a>
                 </td>
                 <td class="px-4 py-4 text-sm text-gray-800">
                     {{code.latitude}}
@@ -96,7 +96,7 @@
                 {% for code in postcodes.NorthernIreland %}
                 <tr onclick="window.location.href='/nir/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
                 <td class="px-4 py-4 text-gray-800 font-semibold hover:text-[#007bff]">
-                    <a href="/nir/{{code.postcode | replace_spaces}}/"></a>{{code.postcode}}
+                    <a class="text-[#007bff]" href="/nir/{{code.postcode | replace_spaces}}/">{{code.postcode}}</a>
                 </td>
                 <td class="px-4 py-4 text-sm text-gray-800">
                     {{code.latitude}}
@@ -124,8 +124,8 @@
         <h3 class="text-2xl font-bold mb-4 ">England ➛ Counties</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for county in england.county %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/england/{{county.region.slug}}/{{county.slug}}/">{{county.name}}, {{county.region}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/england/{{county.region.slug}}/{{county.slug}}/">{{county.name}}, {{county.region}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -135,8 +135,8 @@
         <h3 class="text-2xl font-bold mb-4 ">England ➛ Districts</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for district in england.district %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/england/{{district.county.region.slug}}/{{district.county.slug}}/{{district.slug}}/">{{district.name}}, {{district.county}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/england/{{district.county.region.slug}}/{{district.county.slug}}/{{district.slug}}/">{{district.name}}, {{district.county}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -146,8 +146,8 @@
         <h3 class="text-2xl font-bold mb-4 ">England ➛ Wards</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for ward in england.ward %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/england/{{ward.district.county.region.slug}}/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/england/{{ward.district.county.region.slug}}/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
                     </li>
                 {% endfor %}
             </ul>    
@@ -160,8 +160,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Districts</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for district in wales.district %}
-                    <li>
-                        <a class="hover:text-[#007bff]" href="/wales/{{district.county.slug}}/{{district.slug}}/">{{district.name}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/wales/{{district.county.slug}}/{{district.slug}}/">{{district.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -171,8 +171,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Wards</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for ward in wales.ward %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/wales/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/wales/{{ward.district.county.slug}}/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -184,8 +184,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Scotland ➛ Districts</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for district in scotland.district %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/scotland/{{district.slug}}/">{{district.name}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/scotland/{{district.slug}}/">{{district.name}}</a>
                     </li>
                 {% endfor %}    
             </ul>
@@ -195,8 +195,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Wales ➛ Wards</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for ward in scotland.ward %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/scotland/{{ward.district.slug}}/{{ward.slug}}/">{{ward.name}}, {{ward.district}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/scotland/{{ward.district.slug}}/{{ward.slug}}/">{{ward.name}}, {{ward.district}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -209,8 +209,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Northern Ireland ➛ Districts</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for district in ni.district %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/northernireland/{{district.slug}}/">{{district.name}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/northernireland/{{district.slug}}/">{{district.name}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -220,8 +220,8 @@
         <h3 class="text-2xl font-bold mb-4 ">Northern Ireland ➛ Wards</h3>
             <ul class="ml-8 mb-2 list-disc text-gray-700 font-semibold">
                 {% for ward in ni.ward %}
-                    <li class="mb-3 shadow-md p-2">
-                        <a class="hover:text-[#007bff]" href="/northernireland/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
+                    <li class="mb-3 shadow-md p-2 hover:translate-x-[1px] hover:translate-y-[-1px]">
+                        <a class="text-[#007bff]" href="/northernireland/{{ward.district.slug}}/{{ward.slug}}">{{ward.name}}, {{ward.district}}</a>
                     </li>
                 {% endfor %}
             </ul>

@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}UK Postcode{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -74,17 +73,6 @@
       font-weight: 400;
     }
 
-    /* Links */
-    /* a {
-    color: #007bff;
-    text-decoration: none;
-} */
-
-    /* a:hover {
-    text-decoration: underline;
-}
- */
-    /* Paragraphs */
     p {
       margin-bottom: 20px;
     }
@@ -180,12 +168,12 @@
                 <path d="M10 .969L9.037 0 5 4.063.963 0 0 .969 5 6z" />
               </svg>
             </div>
-            <div id="dropdown-menu" class="dropdown-menu px-2 absolute bg-gray-100 text-gray-600 text-sm hidden">
-              <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Postcode" data-placeholder="Search Postcode">
-                <span class="flex-1">Postcode</span>
+            <div id="dropdown-menu" class="dropdown-menu px-2 absolute bg-white text-gray-600 text-sm hidden border rounded-lg mt-2">
+              <a class="item flex items-center p-2 " data-value="Postcode" data-placeholder="Search Postcode">
+                <span class="flex-1 hover:text-[#007bff]">Postcode</span>
               </a>
-              <a class="item flex items-center p-2 hover:bg-gray-200 " data-value="Area" data-placeholder="Search Area">
-                <span class="flex-1">Administrative Area</span>
+              <a class="item flex items-center p-2 " data-value="Area" data-placeholder="Search Area">
+                <span class="flex-1 hover:text-[#007bff]">Administrative Area</span>
               </a>
             </div>
           </div>
