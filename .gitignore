@@ -3,6 +3,7 @@
 *.pyc
 __pycache__/
 db.sqlite3
+importdb.py
 *.sqlite3
 *.pyo
 *.pyd

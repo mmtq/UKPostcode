@@ -89,27 +89,27 @@
 # # PostcodeData.objects.all().delete()
 
 
-import os
-import django
+# import os
+# import django
 
-# Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'UKPostcode.settings')  # Replace with your project name
-django.setup()
+# # Set up Django environment
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'UKPostcode.settings')  # Replace with your project name
+# django.setup()
 
-from Scotland.models import PostcodeData
+# from Scotland.models import PostcodeData
 
-# The actual script logic
-def populate_normalized_postcode():
-    postcodes = PostcodeData.objects.all()
-    count = postcodes.count()
-    print(f'Found {count} postcodes to update.')
+# # The actual script logic
+# def populate_normalized_postcode():
+#     postcodes = PostcodeData.objects.all()
+#     count = postcodes.count()
+#     print(f'Found {count} postcodes to update.')
 
-    for postcode in postcodes:
-        normalized = postcode.Postcode.replace(' ', '')
-        postcode.normalized_postcode = normalized
-        postcode.save(update_fields=['normalized_postcode'])
+#     for postcode in postcodes:
+#         normalized = postcode.Postcode.replace(' ', '')
+#         postcode.normalized_postcode = normalized
+#         postcode.save(update_fields=['normalized_postcode'])
 
-    print('Successfully populated normalized_postcode field.')
+#     print('Successfully populated normalized_postcode field.')
 
-if __name__ == '__main__':
-    populate_normalized_postcode()
+# if __name__ == '__main__':
+#     populate_normalized_postcode()
