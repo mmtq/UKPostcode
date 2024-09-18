@@ -1,5 +1,6 @@
 {% extends 'england/core.html'%}
 {% block title %}{{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}{% endblock %}
+{% load custom_filters %}
 {% block content %}
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
@@ -228,7 +229,7 @@
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">Ward</th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.ward}}</td>
+                    <a class="text-[#007bff] hover:underline" href="/england/{{postcode.region | slugify}}/{{postcode.county | slugify}}/{{postcode.district | slugify}}/{{postcode.ward | slugify}}/">{{postcode.ward}}</a></td>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.ward_code}}</td>
             </tr>
@@ -236,7 +237,7 @@
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">District</th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.district}}</td>
+                    <a class="text-[#007bff] hover:underline" href="/england/{{postcode.region | slugify}}/{{postcode.county | slugify}}/{{postcode.district | slugify}}/">{{postcode.district}}</a></td>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.district_code}}</td>
             </tr>
@@ -245,7 +246,7 @@
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">County
                 </th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.county}}</td>
+                    <a class="text-[#007bff] hover:underline" href="/england/{{postcode.region | slugify}}/{{postcode.county | slugify}}/">{{postcode.county}}</a></td>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.county_code}}</td>
             </tr>
@@ -293,7 +294,7 @@
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">Country
                 </th>
                 <td colspan="2" class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.country}}</td>
+                    England</td>
             </tr>
 
         </tbody>
@@ -313,21 +314,21 @@
             <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
                 <tr class="">
                     <td class="px-4 py-4 text-gray-800">
-                        <a class="hover:text-[#007bff]"
+                        <a class="text-[#007bff] hover:underline"
                             href="https://www.crime-statistics.co.uk/postcode/{{postcode.postcode}}">Crime Statistics of
                             {{postcode.postcode}}</a>
                     </td>
                 </tr>
                 <tr class="">
                     <td class="px-4 py-4 text-gray-800">
-                        <a class="hover:text-[#007bff]"
+                        <a class="text-[#007bff] hover:underline"
                             href="https://www.zoopla.co.uk/for-sale/property/{{postcode.postcode}}">Properties for sale
                             in {{postcode.postcode}}</a>
                     </td>
                 </tr>
                 <tr class="">
                     <td class="px-4 py-4 text-gray-800">
-                        <a class="hover:text-[#007bff]"
+                        <a class="text-[#007bff] hover:underline"
                             href="https://www.zoopla.co.uk/for-rent/property/{{postcode.postcode}}">Properties for rent
                             in {{postcode.postcode}}</a>
                     </td>

@@ -1,5 +1,6 @@
 {% extends 'england/core.html'%}
 {% load custom_filters %}
+{% block robots %}noindex, nofollow{% endblock %}
 {% block title %}Search Results for "{{search_term}}" {% endblock %}
 {% block content %}
 <h2 class="text-2xl font-semibold mb-4 text-center">Search Results for "{{search_term}}"</h2>

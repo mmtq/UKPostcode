@@ -1,5 +1,6 @@
 {% extends 'england/core.html'%}
-{% block title %}Postcode '{{postcode.postcode}}', {{postcode.ward}}, {{postcode.district}}{% endblock %}
+{% load custom_filters %}
+{% block title %}Postcode {{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}{% endblock %}
 {% block content %}
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
@@ -18,46 +19,9 @@
 
 <!-- -----------data---------- -->
 <div class="p-4">
-    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcode '{{postcode.postcode}}', {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> Northern Ireland </span></h1>
-    <!-- <p class="text-gray-800 leading-relaxed text-base">
-        Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
-    </p> -->
-  </div>
+    <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcode {{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> Northern Ireland </span></h1>
+</div>
 
-<div class="w-auto p-1 border rounded-lg">
-    <div class="px-4 py-2 bg-gray-200">
-        <h2 class="text-black uppercase font-semibold">Map of {{postcode.postcode}}</h2>
-      </div>
-    
-    <iframe class="w-full" frameborder="0" height="300" scrolling="yes"
-        src="https://maps.google.com/maps?q={{postcode.latitude}},{{postcode.longitude}}&amp;hl=en&amp;z=14&amp;output=embed">
-    </iframe>
-</div>
-<div class='group max-lg:border-b p-3 my-1 relative border rounded-lg w-[140px]'>
-    <a href='javascript:void(0)' class='text-gray-600 text-[15px] font-semibold hover:fill-[#007bff] block'>View Map
-        on<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
-            viewBox="0 0 24 24">
-            <path
-                d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
-                data-name="16" data-original="#000000" />
-        </svg>
-    </a>
-    <ul
-        class='absolute shadow-lg bg-white space-y-3 min-w-[250px] top-[28px] left-[110px] z-50 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
-        <li class='border-b py-2 '><a
-                href="https://www.openstreetmap.org/?mlat={{postcode.latitude}}&mlon={{postcode.longitude}}#map=18/{{postcode.latitude}}/{{postcode.longitude}}"
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>OpenStreetMap</a></li>
-        <li class='border-b py-2 '><a
-                href='https://wego.here.com/?map={{postcode.latitude}},{{postcode.longitude}},16,normal'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>HereWeGo</a></li>
-        <li class='border-b py-2 '><a
-                href='https://www.bing.com/maps?rtp=%7Epos.{{ postcode.latitude }}_&lvl=16.0&cp={{ postcode.latitude }}%7E{{ postcode.longitude }}'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>BingMaps</a></li>
-        <li class='border-b py-2 '><a
-                href='https://www.waze.com/live-map/directions?navigate=yes&to=ll.{{ postcode.latitude }}%2C{{ postcode.longitude }}'
-                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>Waze</a></li>
-    </ul>
-</div>
 <div class="grid lg:grid-cols-2 grid-cols-1 md:grid-cols-1 gap-4">
     <div class="">
         <div class="block w-full overflow-x-auto max-w-xl border rounded-md my-1">
@@ -206,6 +170,41 @@
         </div>
     </div>
 </div>
+<div class="w-auto p-1 border rounded-lg">
+    <div class="px-4 py-2 bg-gray-200">
+        <h2 class="text-black uppercase font-semibold">Map of {{postcode.postcode}}</h2>
+      </div>
+    
+    <iframe class="w-full" frameborder="0" height="300" scrolling="yes"
+        src="https://maps.google.com/maps?q={{postcode.latitude}},{{postcode.longitude}}&amp;hl=en&amp;z=14&amp;output=embed">
+    </iframe>
+</div>
+<div class='group max-lg:border-b p-3 my-1 relative border rounded-lg w-[140px]'>
+    <a href='javascript:void(0)' class='text-gray-600 text-[15px] font-semibold hover:fill-[#007bff] block'>View Map
+        on<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
+            viewBox="0 0 24 24">
+            <path
+                d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                data-name="16" data-original="#000000" />
+        </svg>
+    </a>
+    <ul
+        class='absolute shadow-lg bg-white space-y-3 min-w-[250px] top-[28px] left-[110px] z-50 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+        <li class='border-b py-2 '><a
+                href="https://www.openstreetmap.org/?mlat={{postcode.latitude}}&mlon={{postcode.longitude}}#map=18/{{postcode.latitude}}/{{postcode.longitude}}"
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>OpenStreetMap</a></li>
+        <li class='border-b py-2 '><a
+                href='https://wego.here.com/?map={{postcode.latitude}},{{postcode.longitude}},16,normal'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>HereWeGo</a></li>
+        <li class='border-b py-2 '><a
+                href='https://www.bing.com/maps?rtp=%7Epos.{{ postcode.latitude }}_&lvl=16.0&cp={{ postcode.latitude }}%7E{{ postcode.longitude }}'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>BingMaps</a></li>
+        <li class='border-b py-2 '><a
+                href='https://www.waze.com/live-map/directions?navigate=yes&to=ll.{{ postcode.latitude }}%2C{{ postcode.longitude }}'
+                class='hover:text-[#007bff] text-gray-600 text-[15px] font-semibold block'>Waze</a></li>
+    </ul>
+</div>
+
 <div class="block overflow-x-auto border rounded-md my-1">
     <table class="items-center w-full bg-transparent border-collapse">
         <thead>
@@ -228,7 +227,7 @@
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">Ward</th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.ward}}</td>
+                    <a class="text-[#007bff] hover:underline" href="/nir/{{postcode.district | slugify}}/{{postcode.ward | slugify}}/">{{postcode.ward}}</a></td>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.ward_code}}</td>
             </tr>
@@ -236,7 +235,7 @@
             <tr class="text-gray-500">
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">District</th>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.district}}</td>
+                    <a class="text-[#007bff] hover:underline" href="/nir/{{postcode.district | slugify}}/">{{postcode.district}}</a></td>
                 <td class="border-t-0 px-4 align-middle text-gray-900 p-4">
                     {{postcode.district_code}}</td>
             </tr>
@@ -295,7 +294,7 @@
                 <th class="border-t-0 px-4 text-sm align-middle p-4 text-left">Country
                 </th>
                 <td colspan="2" class="border-t-0 px-4 align-middle text-gray-900 p-4">
-                    {{postcode.country}}</td>
+                    Northern Ireland</td>
             </tr>
             
         </tbody>
@@ -315,17 +314,17 @@
           <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
             <tr class="">
               <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.crime-statistics.co.uk/postcode/{{postcode.postcode}}">Crime Statistics of {{postcode.postcode}}</a>
+                <a class="text-[#007bff] hover:underline" href="https://www.crime-statistics.co.uk/postcode/{{postcode.postcode}}">Crime Statistics of {{postcode.postcode}}</a>
               </td>
             </tr>
             <tr class="">
               <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.zoopla.co.uk/for-sale/property/{{postcode.postcode}}">Properties for sale in {{postcode.postcode}}</a>
+                <a class="text-[#007bff] hover:underline" href="https://www.zoopla.co.uk/for-sale/property/{{postcode.postcode}}">Properties for sale in {{postcode.postcode}}</a>
               </td>
             </tr>
             <tr class="">
               <td class="px-4 py-4 text-gray-800">
-                <a class="hover:text-[#007bff]" href="https://www.zoopla.co.uk/for-rent/property/{{postcode.postcode}}">Properties for rent in {{postcode.postcode}}</a>
+                <a class="text-[#007bff] hover:underline" href="https://www.zoopla.co.uk/for-rent/property/{{postcode.postcode}}">Properties for rent in {{postcode.postcode}}</a>
               </td>
             </tr>
         </tbody>
