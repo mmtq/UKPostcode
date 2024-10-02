@@ -18,11 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from . import settings, views
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', views.search_view),
+    path('blog/', RedirectView.as_view(url='/')),
     path('blog/uk-postcode-format/', views.blog_view),
+    path('about-us/', views.about_view),
+    path('contact-us/', views.contact_view),
+    path('privacy-policy/', views.privacy_view),
     path('api/fetch-data/', views.fetch_api_data, name='fetch_api_data'),
     path('', include('England.urls')),
     path('', include('Scotland.urls')),

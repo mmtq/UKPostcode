@@ -1,0 +1,79 @@
+{% extends 'england/core.html'%}
+{% block title %} Contact Us - findpostcode.uk {% endblock %}
+{% block content %}
+<ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
+    <!-- <li class="text-gray-500 text-base cursor-pointer">
+        District
+    </li>
+    <li class="text-gray-500 text-lg">/</li> -->
+    <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
+        <a href="/">Home</a>
+    </li>
+    <li class="text-gray-500 text-lg">/</li>
+    <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">
+        Contact Us
+    </li>
+</ul>
+<div class="bg-white sm:px-6 p-4 font-[sans-serif]">
+    <div class="mx-auto">
+        <div>
+            <h2 class="text-3xl font-extrabold text-gray-800 mb-4">Contact Us</h2>
+            <p class="text-gray-700 mt-4">We’d love to hear from you! Whether you have questions, feedback, or need assistance, feel free to reach out. Our team at ukpostcode.co is here to help you with any information related to UK postcodes and our tools.</p>
+        </div>
+        <hr class="my-10" />
+        <div class="grid gap-16">
+            <div>
+                <h3 class="text-2xl font-bold text-gray-800">Get in Touch</h3>
+                <div class="mt-4">
+                    <p class="text-gray-700">You can contact us through the following methods:</p>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-2 text-gray-700">
+                        <li><b>Email:</b> For general inquiries or support, email us at <a href="mailto:support@ukpostcode.co" class="text-blue-600">support@ukpostcode.co</a>.</li>
+                        <!-- <li><b>Phone:</b> Call our customer support team at <a href="tel:+441234567890" class="text-blue-600">+44 1234 567 890</a> (Mon-Fri, 9 AM to 6 PM GMT).</li> -->
+                        <!-- <li><b>Mail:</b> Send us your letters at:<br />
+                            ukpostcode.co<br />
+                            123 Postcode Avenue,<br />
+                            London, UK<br />
+                            ZIP: AB12 3CD
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- <div>
+                <h3 class="text-2xl font-bold text-gray-800">Online Contact Form</h3>
+                <div class="mt-4">
+                    <p class="text-gray-700">Alternatively, you can fill out the form below, and we will get back to you as soon as possible:</p>
+                    <form action="/contact/submit" method="POST" class="mt-4 space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium">Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium">Message</label>
+                            <textarea id="message" name="message" rows="5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+            <div>
+                <h3 class="text-2xl font-bold text-gray-800">Social Media</h3>
+                <div class="mt-4">
+                    <p class="text-gray-700">Follow us on social media for the latest updates:</p>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-2 text-gray-700">
+                        <li><a href="https://twitter.com/ukpostcode" class="text-blue-600">Twitter</a></li>
+                        <li><a href="https://facebook.com/ukpostcode" class="text-blue-600">Facebook</a></li>
+                        <li><a href="https://linkedin.com/company/ukpostcode" class="text-blue-600">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -32,6 +32,12 @@ from django.http import JsonResponse
 #     return render(request, 'parcel.html', context)
 def blog_view(request):
     return render(request, 'blog/uk-postcode.html')
+def about_view(request):
+    return render(request, 'about.html')
+def privacy_view(request):
+    return render(request, 'privacy.html')
+def contact_view(request):
+    return render(request, 'contact-us.html')
 def schools_view(request):
     feedback_message = None  # Initialize feedback_message as None
     flag = 0  # Initialize the flag as 0
@@ -102,33 +108,116 @@ def busStops_view(request):
     # Render the template with the form, no feedback_message, and flag 0
     return render(request, 'england/busStops.html', {'form': form, 'flag': flag})
 
+# def search_view(request):
+#     key = request.GET.get('s','')
+#     search_term = key.replace(' ', '')
+#     search_type = request.GET.get('search_type', 'Postcode')
+#     if search_term and search_type == 'Postcode':
+#         england_postcodes = E.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+#         scotland_postcodes = S.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+#         wales_postcodes = W.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+#         ni_postcodes = N.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
+#         postcodes = {}
+#         if england_postcodes.exists():
+#             postcodes['England'] = england_postcodes
+#             # print(postcodes['England'])
+#         if scotland_postcodes.exists():
+#             postcodes['Scotland'] = scotland_postcodes
+#         if wales_postcodes.exists():
+#             postcodes['Wales'] = wales_postcodes
+#         if ni_postcodes.exists():
+#             postcodes['NorthernIreland'] = ni_postcodes
+
+#         context = {
+#             'postcodes': postcodes,
+#             'search_term': key
+#         }
+#         return render(request, 'search.html', context)
+#     search_term = key
+#     if search_term and search_type == 'Area':
+#         england_locations = {
+#             'county': E.County.objects.filter(name__icontains=search_term),
+#             'district': E.District.objects.filter(name__icontains=search_term),
+#             'ward': E.Ward.objects.filter(name__icontains=search_term)
+#         }
+
+#         scotland_locations = {
+#             'district': S.District.objects.filter(name__icontains=search_term),
+#             'ward': S.Ward.objects.filter(name__icontains=search_term)
+#         }
+
+#         wales_locations = {
+#             'district': W.district.objects.filter(name__icontains=search_term),
+#             'ward': W.ward.objects.filter(name__icontains=search_term)
+#         }
+
+#         ni_locations = {
+#             'district': N.district.objects.filter(name__icontains=search_term),
+#             'ward': N.ward.objects.filter(name__icontains=search_term)
+#         }
+#         flag = 0
+#         if len(england_locations['county']) + len(england_locations['district']) + len(england_locations['ward']) > 0 or len(scotland_locations['district']) + len(scotland_locations['ward']) > 0 or len(wales_locations['district']) + len(wales_locations['ward']) > 0 or len(ni_locations['district']) + len(ni_locations['ward']) > 0:
+#             flag = 1
+
+#         context = {
+#             'england': england_locations,
+#             'scotland': scotland_locations,
+#             'wales': wales_locations,
+#             'ni': ni_locations,
+#             'search_term': search_term,
+#             'flag': flag
+#         }
+
+#         # print(context)
+#         return render(request, 'search.html', context)
+def fetch_api_data(request):
+    search_term = request.GET.get('search', '')
+
+    if not search_term:
+        return JsonResponse({'error': 'No search term provided'}, status=400)
+
+    response = requests.get(f'https://www.doogal.co.uk/GetPostcode/{search_term}?output=json')
+    response = response.json()
+
+    return JsonResponse(response)
+
+from django.core.paginator import Paginator
+from django.shortcuts import render
+
 def search_view(request):
-    key = request.GET.get('s','')
+    key = request.GET.get('s', '')
     search_term = key.replace(' ', '')
     search_type = request.GET.get('search_type', 'Postcode')
-    if search_term and search_type == 'Postcode':
-        england_postcodes = E.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
-        scotland_postcodes = S.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
-        wales_postcodes = W.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
-        ni_postcodes = N.PostcodeData.objects.filter(normalized_postcode__icontains=search_term)
-        postcodes = {}
-        if england_postcodes.exists():
-            postcodes['England'] = england_postcodes
-            print(postcodes['England'])
-        if scotland_postcodes.exists():
-            postcodes['Scotland'] = scotland_postcodes
-        if wales_postcodes.exists():
-            postcodes['Wales'] = wales_postcodes
-        if ni_postcodes.exists():
-            postcodes['NorthernIreland'] = ni_postcodes
 
+    # Helper function for paginating the results
+    def paginate_results(queryset, page_size=20):
+        paginator = Paginator(queryset, page_size)
+        page_number = request.GET.get('page')
+        return paginator.get_page(page_number)
+
+    if search_term and search_type == 'Postcode':
+        # Search across multiple regions for postcodes
+        postcodes = {
+            'England': E.PostcodeData.objects.filter(normalized_postcode__icontains=search_term).only('normalized_postcode'),
+            'Scotland': S.PostcodeData.objects.filter(normalized_postcode__icontains=search_term).only('normalized_postcode'),
+            'Wales': W.PostcodeData.objects.filter(normalized_postcode__icontains=search_term).only('normalized_postcode'),
+            'NorthernIreland': N.PostcodeData.objects.filter(normalized_postcode__icontains=search_term).only('normalized_postcode')
+        }
+
+        # Paginate non-empty regions
+        postcodes = {region: paginate_results(data) for region, data in postcodes.items() if data.exists()}
+
+        # Context for rendering
         context = {
-            'postcodes': postcodes,
-            'search_term': key
+            'postcodes': postcodes,  # Paginated results by region
+            'search_term': key,  # Original search term with spaces
+            'search_type': search_type  # Type of search (Postcode or Area)
         }
         return render(request, 'search.html', context)
-    search_term = key
-    if search_term and search_type == 'Area':
+
+
+    elif key and search_type == 'Area':
+        search_term = key
         england_locations = {
             'county': E.County.objects.filter(name__icontains=search_term),
             'district': E.District.objects.filter(name__icontains=search_term),
@@ -159,18 +248,9 @@ def search_view(request):
             'wales': wales_locations,
             'ni': ni_locations,
             'search_term': search_term,
-            'flag': flag
+            'flag': flag,
+            'search_type': search_type
         }
-
-        print(context)
         return render(request, 'search.html', context)
-def fetch_api_data(request):
-    search_term = request.GET.get('search', '')
-
-    if not search_term:
-        return JsonResponse({'error': 'No search term provided'}, status=400)
-
-    response = requests.get(f'https://www.doogal.co.uk/GetPostcode/{search_term}?output=json')
-    response = response.json()
-
-    return JsonResponse(response)
+    
+    return render(request, 'search.html', {'search_term': key})
