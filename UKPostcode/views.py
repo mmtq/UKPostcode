@@ -44,7 +44,6 @@ def area_view(request, slug):
     # Initialize the result variable
     postcodes = None
     flag = 0
-
     # Check for postcodes in each country and stop when a match is found
     if postcodes is None:
         postcodes = E.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
@@ -61,7 +60,6 @@ def area_view(request, slug):
     # If no postcodes were found in any of the models, raise a 404 error
     if not postcodes.exists():
         raise Http404("No postcodes found matching the given area.")
-
     # If postcodes were found, apply pagination
     paginator = Paginator(postcodes, 20)  # 10 results per page
     page_number = request.GET.get('page')
@@ -96,7 +94,6 @@ def district_view(request, slug):
     # If no postcodes were found in any of the models, raise a 404 error
     if not postcodes.exists():
         raise Http404("No postcodes found matching the given area.")
-
     # If postcodes were found, apply pagination
     paginator = Paginator(postcodes, 20)  # 10 results per page
     page_number = request.GET.get('page')
@@ -106,7 +103,7 @@ def district_view(request, slug):
         'postcodes': page_obj,  # Paginated postcodes
         'flag': flag,
         'slug': slug,
-        'area': area
+        'area': area,
     }
 
     return render(request, 'district.html', context)

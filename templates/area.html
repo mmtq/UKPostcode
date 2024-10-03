@@ -3,6 +3,18 @@
 {% block robots %}index, follow{% endblock %}
 {% block title %}All Postcodes in {{slug}} Area{% endblock %}
 {% block content %}
+<ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
+    <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
+        <a href="/">Home</a>
+    </li>
+    <li class="text-gray-500 text-lg">/</li>
+    <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">
+        {{slug}}
+    </li>
+</ul>
+
+<h2 class="text-2xl font-semibold mb-4 text-center">All Postcodes in {{slug}} Area</h2>
+
 <div class="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2 p-4 justify-center items-center">
     <div class="">
         <table class="min-w-full w-full divide-y divide-gray-200 table-fixed">
