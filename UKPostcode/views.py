@@ -6,7 +6,9 @@ from Scotland import models as S
 from wales import models as W
 from NorthernIreland import models as N
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
+from django.core.paginator import Paginator
+
 
 # def parcel_tracker(request):
 #     api_key = 'asat_35f85fe1123348adaa4ff5189a678734'
@@ -33,11 +35,80 @@ from django.http import JsonResponse
 def blog_view(request):
     return render(request, 'blog/uk-postcode.html')
 def about_view(request):
-    return render(request, 'about.html')
+    return render(request, 'pages/about.html')
 def privacy_view(request):
-    return render(request, 'privacy.html')
+    return render(request, 'pages/privacy.html')
 def contact_view(request):
-    return render(request, 'contact-us.html')
+    return render(request, 'pages/contact-us.html')
+def area_view(request, slug):
+    # Initialize the result variable
+    postcodes = None
+    flag = 0
+
+    # Check for postcodes in each country and stop when a match is found
+    if postcodes is None:
+        postcodes = E.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+    
+    if not postcodes.exists():
+        postcodes = S.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+        flag = 1
+    if not postcodes.exists():
+        postcodes = W.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+        flag = 0
+    if not postcodes.exists():
+        postcodes = N.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+
+    # If no postcodes were found in any of the models, raise a 404 error
+    if not postcodes.exists():
+        raise Http404("No postcodes found matching the given area.")
+
+    # If postcodes were found, apply pagination
+    paginator = Paginator(postcodes, 20)  # 10 results per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'postcodes': page_obj,  # Paginated postcodes
+        'flag': flag,
+        'slug': slug,
+    }
+
+    return render(request, 'area.html', context)
+
+def district_view(request, slug):
+    # Initialize the result variable
+    postcodes = None
+    flag = 0
+
+    # Check for postcodes in each country and stop when a match is found
+    if postcodes is None:
+        postcodes = E.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+    
+    if not postcodes.exists():
+        postcodes = S.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+        flag = 1
+    if not postcodes.exists():
+        postcodes = W.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+        flag = 0
+    if not postcodes.exists():
+        postcodes = N.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
+
+    # If no postcodes were found in any of the models, raise a 404 error
+    if not postcodes.exists():
+        raise Http404("No postcodes found matching the given area.")
+
+    # If postcodes were found, apply pagination
+    paginator = Paginator(postcodes, 20)  # 10 results per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'postcodes': page_obj,  # Paginated postcodes
+        'flag': flag,
+        'slug': slug,
+    }
+
+    return render(request, 'district.html', context)
 def schools_view(request):
     feedback_message = None  # Initialize feedback_message as None
     flag = 0  # Initialize the flag as 0
@@ -181,8 +252,6 @@ def fetch_api_data(request):
 
     return JsonResponse(response)
 
-from django.core.paginator import Paginator
-from django.shortcuts import render
 
 def search_view(request):
     key = request.GET.get('s', '')

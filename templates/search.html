@@ -53,9 +53,9 @@
             {% endif %}
             {% if postcodes.Scotland|length > 0 %}
                 {% for code in postcodes.Scotland %}
-                <tr onclick="window.location.href='/scotland/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
+                <tr onclick="window.location.href='/scotland/{{code.Postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
                 <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
-                    <a class="text-[#007bff]" href="/scotland/{{code.postcode | replace_spaces}}/">{{code.Postcode}}</a>
+                    <a class="text-[#007bff]" href="/scotland/{{code.Postcode | replace_spaces}}/">{{code.Postcode}}</a>
                 </td>
                 <td class="px-4 py-4 text-sm text-gray-800">
                     {{code.Latitude}}

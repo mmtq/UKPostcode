@@ -1,0 +1,104 @@
+{% extends 'england/core.html'%}
+{% load custom_filters %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}All Postcodes in {{slug}} District{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-semibold mb-4 text-center">All Postcodes in {{slug}} District</h2>
+
+<div class="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2 p-4 justify-center items-center">
+    <div class="">
+        <table class="min-w-full w-full divide-y divide-gray-200 table-fixed">
+          <thead class="bg-gray-100 whitespace-nowrap">
+            <tr>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Postcode
+              </th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Latitude
+              </th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Longitude
+              </th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Easting
+              </th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Northing
+              </th>
+            </tr>
+          </thead>
+  
+          <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
+            {% if flag %}
+                {% for code in postcodes %}
+                <tr onclick="window.location.href='/scotland/{{code.Postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
+                <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
+                    <a class="text-[#007bff]" href="/scotland/{{code.Postcode | replace_spaces}}/">{{code.Postcode}}</a>
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.Latitude}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.Longitude}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.Easting}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.Northing}}
+                </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                {% for code in postcodes %}
+                <tr onclick="window.location.href='/england/{{code.postcode | replace_spaces}}/';" class="cursor-pointer hover:translate-x-[1px] hover:translate-y-[-1px]">
+                <td class="px-4 py-4 text-sm text-gray-800 font-semibold hover:text-[#007bff]">
+                    <a class="text-[#007bff]" href="/england/{{code.postcode | replace_spaces}}/">{{code.postcode}}</a>
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.latitude}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.longitude}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.easting}}
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-800">
+                    {{code.northing}}
+                </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            
+        </tbody>
+     </table>
+    </div>
+    <ul class="font-[sans-serif] flex mx-auto border-2 divide-x-2 border-black rounded w-max mt-4">
+        <!-- Previous Page Link -->
+        {% if postcodes.has_previous %}
+        <li class="px-5 py-2.5 flex items-center justify-center shrink-0 cursor-pointer text-sm font-semibold text-[#333] min-w-[110px] hover:bg-gray-50">
+            <a href="?page={{ postcodes.previous_page_number }}{% if request.GET.s %}&s={{ request.GET.s }}{% endif %}" class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-current mr-3" viewBox="0 0 55.753 55.753">
+                    <path d="M12.745 23.915c.283-.282.59-.52.913-.727L35.266 1.581a5.4 5.4 0 0 1 7.637 7.638L24.294 27.828l18.705 18.706a5.4 5.4 0 0 1-7.636 7.637L13.658 32.464a5.367 5.367 0 0 1-.913-.727 5.367 5.367 0 0 1-1.572-3.911 5.369 5.369 0 0 1 1.572-3.911z"></path>
+                </svg>
+                Previous
+            </a>
+        </li>
+        {% endif %}
+        
+        <!-- Next Page Link -->
+        {% if postcodes.has_next %}
+        <li class="px-5 py-2.5 flex items-center justify-center shrink-0 cursor-pointer text-sm font-semibold text-[#333] min-w-[110px] hover:bg-gray-50">
+            <a href="?page={{ postcodes.next_page_number }}{% if request.GET.s %}&s={{ request.GET.s }}{% endif %}" class="flex items-center">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-current ml-3 rotate-180" viewBox="0 0 55.753 55.753">
+                    <path d="M12.745 23.915c.283-.282.59-.52.913-.727L35.266 1.581a5.4 5.4 0 0 1 7.637 7.638L24.294 27.828l18.705 18.706a5.4 5.4 0 0 1-7.636 7.637L13.658 32.464a5.367 5.367 0 0 1-.913-.727 5.367 5.367 0 0 1-1.572-3.911 5.369 5.369 0 0 1 1.572-3.911z"></path>
+                </svg>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+</div>
+{% endblock %}

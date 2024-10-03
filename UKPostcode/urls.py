@@ -28,6 +28,8 @@ urlpatterns = [
     path('about-us/', views.about_view),
     path('contact-us/', views.contact_view),
     path('privacy-policy/', views.privacy_view),
+    path('area/<str:slug>/', views.area_view),
+    path('district/<str:slug>/', views.district_view),
     path('api/fetch-data/', views.fetch_api_data, name='fetch_api_data'),
     path('', include('England.urls')),
     path('', include('Scotland.urls')),
