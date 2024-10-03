@@ -32,6 +32,8 @@ def ward(request, district_slug, ward_slug):
 
 def postcode(request, postcode):
     postcode = postcode.replace('-', ' ')
+    area_tag = postcode[0: 2]
+    district_tag = postcode[0: 3]
     postcode_query = get_object_or_404(models.PostcodeData, postcode=postcode)
     ward = postcode_query.ward
     ward_slug = slugify(ward)
@@ -44,5 +46,7 @@ def postcode(request, postcode):
         'ward_slug': ward_slug,
         'district': district,
         'district_slug': district_slug,
+        'area_tag': area_tag,
+        'district_tag': district_tag
     }
     return render(request, 'bt/single-postcode.html', context)

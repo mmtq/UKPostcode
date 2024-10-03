@@ -1,7 +1,32 @@
 {% extends 'england/core.html'%}
 {% block title %}Postcode {{postcode.Postcode}}, {{postcode.Ward}}, {{postcode.District}}{% endblock %}
 {% load custom_filters %}
+{% block head %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{postcode.District}}",
+        "item": "https://findpostcode.uk/scotland/{{district_slug}}/"
+    },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{postcode.Ward}}",
+        "item": "https://findpostcode.uk/scotland/{{district_slug}}/{{ward_slug}}/"
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ postcode.Postcode }}"
+    }]
+    }
+</script>
+    {% endblock %}
 {% block content %}
+
+
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
@@ -23,7 +48,16 @@
     <!-- <p class="text-gray-800 leading-relaxed text-base">
         Select a postcode below to find the associated information (Geography, Administrative Areas, Demography, Nearest stations & schools etc.).
     </p> -->
-  </div>
+</div>
+<div class="px-4 py-2 text-xl font-semibold text-gray-600">
+    <span class=" leading-relaxed text-base mr-2">
+        Filter by Area <a class="text-[#007bff] hover:underline" href="/area/{{area_tag}}/">{{area_tag}}</a>
+    </span>
+    /
+    <span class=" leading-relaxed text-base ml-2">
+        Filter by District <a class="text-[#007bff] hover:underline" href="/district/{{district_tag}}/">{{district_tag}}</a>
+    </span>
+</div>
 
 <div class="grid lg:grid-cols-2 grid-cols-1 md:grid-cols-1 gap-4">
     <div class="">

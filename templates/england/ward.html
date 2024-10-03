@@ -1,13 +1,38 @@
 {% extends 'england/core.html'%}
 {% block title %} {{ district.name }}, {{ county.name }}, {{ region.name }}, England {% endblock %}
+{% block head %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{region.name}}",
+        "item": "https://findpostcode.uk/england/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{county.name}}",
+        "item": "https://findpostcode.uk//england/{{region.slug}}/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{district.name}}"
+      }]
+    }
+</script>
+
+{% endblock %}
 {% block content %}
+
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
         <a href="/england/">{{region.name}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
-        <a href="/england/{{region.slug}}">{{county.name}}</a>
+        <a href="/england/{{region.slug}}/">{{county.name}}</a>
     </li>
     <li class="text-gray-500 text-lg">/</li>
     <li class="text-[#333] text-base font-bold cursor-pointer whitespace-nowrap">

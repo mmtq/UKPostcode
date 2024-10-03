@@ -1,7 +1,32 @@
 {% extends 'england/core.html'%}
 {% load custom_filters %}
 {% block title %}Postcode {{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}{% endblock %}
+{% block head %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{postcode.district}}",
+        "item": "https://findpostcode.uk/nir/{{district_slug}}/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{postcode.ward}}",
+        "item": "https://findpostcode.uk/nir/{{district_slug}}/{{ward_slug}}/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ postcode.postcode }}"
+      }]
+    }
+    </script>
+    {% endblock %}
 {% block content %}
+
+
 <!-- -----------breadcrumbs---------- -->
 <ul class="flex flex-wrap items-center justify-center space-x-1">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
@@ -20,6 +45,15 @@
 <!-- -----------data---------- -->
 <div class="p-4">
     <h1 class="text-black lg:text-2xl text-xl font-bold mb-4">Postcode {{postcode.postcode}}, {{postcode.ward}}, {{postcode.district}}<span class="text-gray-600 text-sm"> Northern Ireland </span></h1>
+</div>
+<div class="px-4 py-2 text-xl font-semibold text-gray-600">
+    <span class=" leading-relaxed text-base mr-2">
+        Filter by Area <a class="text-[#007bff] hover:underline" href="/area/{{area_tag}}/">{{area_tag}}</a>
+    </span>
+    /
+    <span class=" leading-relaxed text-base ml-2">
+        Filter by District <a class="text-[#007bff] hover:underline" href="/district/{{district_tag}}/">{{district_tag}}</a>
+    </span>
 </div>
 
 <div class="grid lg:grid-cols-2 grid-cols-1 md:grid-cols-1 gap-4">

@@ -1,6 +1,25 @@
 {% extends 'england/core.html'%}
 {% block title %}Postcodes by District in Scotland{% endblock %}
+{% block head %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://findpostcode.uk/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Scotland",
+      }]
+    }
+    </script>
+{% endblock %}
 {% block content %}
+
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">
         <a href="/">Home</a>

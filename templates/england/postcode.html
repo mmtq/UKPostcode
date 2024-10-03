@@ -1,6 +1,29 @@
 {% extends 'england/core.html'%}
 {% block title %}List of Postcodes in {{ward.name}}, {{district.name}} {% endblock %}
 {% load custom_filters %}
+{% block head %} 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{county.name}}",
+      "item": "https://findpostcode.uk/england/{{region.slug}}/{{county.slug}}/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{district.name}}",
+      "item": "https://findpostcode.uk//england/{{region.slug}}/{{county.slug}}/{{district.slug}}/"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ward.name}}"
+    }]
+  }
+  </script>
+{% endblock %}
 {% block content %}
 <ul class="flex items-center justify-center space-x-1 font-[sans-serif]">
     <li class="text-gray-500 text-base cursor-pointer hover:text-[#007bff]">

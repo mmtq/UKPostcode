@@ -79,7 +79,7 @@ def district_view(request, slug):
     # Initialize the result variable
     postcodes = None
     flag = 0
-
+    area = slug[0:2]
     # Check for postcodes in each country and stop when a match is found
     if postcodes is None:
         postcodes = E.PostcodeData.objects.filter(normalized_postcode__istartswith=slug).order_by('normalized_postcode').only('normalized_postcode')
@@ -106,6 +106,7 @@ def district_view(request, slug):
         'postcodes': page_obj,  # Paginated postcodes
         'flag': flag,
         'slug': slug,
+        'area': area
     }
 
     return render(request, 'district.html', context)

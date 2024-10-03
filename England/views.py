@@ -76,11 +76,6 @@ def postcode(request, postcode):
     county_slug = slugify(county)
     region = postcode_query.region
     region_slug = slugify(region)
-    # random = models.PostcodeData.objects.order_by('?')[:9]
-    # for field in postcode_query._meta.fields:
-    #     field_name = field.name
-    #     field_value = getattr(postcode_query, field_name)
-    #     print(f"{field_name}: {field_value}")
     context = {
         'postcode': postcode_query,
         'ward_slug': ward_slug,
