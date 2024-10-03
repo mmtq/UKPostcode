@@ -25,15 +25,6 @@
             {% else %}
             <p class="text-red-500">No bus stop found.</p>
             {% endif %}
-            
-            <!-- <div class="mt-6">
-                <h2 class="text-xl font-semibold mb-2">Bus Stations:</h2>
-                <ul class="list-disc pl-5 space-y-1">
-                {% for school in feedback_message.busStops %}
-                    <li class="text-gray-700">{{ school }}</li>
-                {% endfor %}
-                </ul>
-            </div> -->
         {% else %}
             <p class="text-red-500">{{ feedback_message }}</p>
         {% endif %}
