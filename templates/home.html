@@ -1,4 +1,24 @@
 {% extends 'base.html' %}
+{%block head %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UK Postcode Finder",
+    "url": "https://findpostcode.uk",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "findukpostcode@gmail.com",
+      "contactType": "Inquiry",
+      "areaServed": "GB",
+      "availableLanguage": "English"
+    },
+    "sameAs": [
+      "https://x.com/findukpostcode"
+    ]
+  }
+</script>  
+{% endblock %}
 {% block body %}
 <div
 class="grid md:grid-cols-2 items-center md:gap-4 gap-8 font-[sans-serif] max-w-7xl max-md:max-w-md mx-auto p-[20px]">
