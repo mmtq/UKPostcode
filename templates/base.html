@@ -48,7 +48,7 @@
     }
 
     h1::before {
-      content: "📫";
+      content: "";
     }
 
     /* Header levels */
@@ -161,7 +161,7 @@
           <input name="s" id="search-input" class="search-input w-full p-2 focus:outline-none border rounded-lg" type="text"
             placeholder="Search Postcode" autocomplete="on" />
           <input type="hidden" name="search_type" id="search-type" value="Postcode">
-          <div class="search-options relative cursor-pointer p-2">
+          <div class="search-options static cursor-pointer p-2">
             <div id="dropdown-header"
               class="dropdown-header text-gray-600 flex items-center justify-between p-2 text-sm border rounded-lg">
               <span id="selected-option">Postcode</span>
