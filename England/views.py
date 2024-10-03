@@ -86,3 +86,51 @@ def postcode(request, postcode):
         'district_tag': district_tag
     }
     return render(request, 'england/single-postcode.html', context)
+
+# from django.template.loader import render_to_string
+# from django.http import HttpResponse
+# from django.views import View
+# from .models import Region, County, District, Ward, PostcodeData
+
+# def generate_dynamic_sitemap():
+#     urls = []
+    
+#     # Add static URLs
+#     urls.append(('http://findpostcode.uk/', '2024-10-04', 'monthly', 1.0))
+#     urls.append(('http://findpostcode.uk/england/', '2024-10-04', 'monthly', 0.8))
+
+#     # Add dynamic URLs for Regions
+#     regions = Region.objects.all()
+#     for region in regions:
+#         urls.append((f"http://findpostcode.uk/england/{region.slug}/", '2024-10-04', 'monthly', 0.6))
+        
+#         # Add Counties for each Region
+#         counties = County.objects.filter(region=region)
+#         for county in counties:
+#             urls.append((f"http://findpostcode.uk/england/{region.slug}/{county.slug}/", '2024-10-04', 'monthly', 0.6))
+            
+#             # Add Districts for each County
+#             districts = District.objects.filter(county=county)
+#             for district in districts:
+#                 urls.append((f"http://findpostcode.uk/england/{region.slug}/{county.slug}/{district.slug}/", '2024-10-04', 'monthly', 0.6))
+                
+#                 # Add Wards for each District
+#                 wards = Ward.objects.filter(district=district)
+#                 for ward in wards:
+#                     urls.append((f"http://findpostcode.uk/england/{region.slug}/{county.slug}/{district.slug}/{ward.slug}/", '2024-10-04', 'monthly', 0.6))
+    
+    # Add Postcodes
+    # postcodes = PostcodeData.objects.all()
+    # for postcode in postcodes:
+    #     urls.append((f"http://findpostcode.uk/england/{postcode.postcode}/", '2024-10-04', 'monthly', 0.6))
+    
+    return urls
+
+# class DynamicSitemapView(View):
+#     def get(self, request, *args, **kwargs):
+#         urls = generate_dynamic_sitemap()
+        
+#         # Prepare the XML response
+#         sitemap_content = render_to_string('england/sitemap.xml', {'urls': urls})
+#         # return HttpResponse(sitemap_content, content_type='application/xml')
+#         print(sitemap_content)

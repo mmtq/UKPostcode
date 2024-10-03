@@ -15,6 +15,8 @@ urlpatterns = [
     path('nearby-schools/', p_views.schools_view, name='feedback'),
     path('nearby-bus-stops/', p_views.busStops_view, name='feedback'),
     # path('england/<str:postcode>/', views.postcode),
+    path('sitemap.xml', views.DynamicSitemapView.as_view(), name='sitemap'),
+
     
 ]
 
