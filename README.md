@@ -7,3 +7,5 @@ Discover detailed insights into any UK postcode, including general information, 
 - **Geographical Data**: Get latitude and longitude, and geographical characteristics of the postcode.
 - **Local Amenities**: Find out about nearby schools, healthcare facilities, public transport links, and local businesses.
 - **Administrative Boundaries**: Understand the local government jurisdictions, including counties, parliamentary constituencies, and wards.
+
+https://findpostcode.uk
